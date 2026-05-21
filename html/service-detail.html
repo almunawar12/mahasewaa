@@ -1,0 +1,434 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Service Detail - MahaSewa</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'inverse-surface': '#2d3133',
+              'on-secondary-fixed-variant': '#38485d',
+              'inverse-primary': '#b4c5ff',
+              'primary-fixed-dim': '#b4c5ff',
+              'on-tertiary-fixed-variant': '#7d2d00',
+              'on-error': '#ffffff',
+              'on-secondary': '#ffffff',
+              'on-surface': '#191c1e',
+              background: '#f7f9fb',
+              'on-primary-container': '#eeefff',
+              'outline-variant': '#c3c6d7',
+              'on-background': '#191c1e',
+              tertiary: '#943700',
+              'surface-container': '#eceef0',
+              'primary-container': '#2563eb',
+              secondary: '#505f76',
+              'on-secondary-container': '#54647a',
+              'on-tertiary-fixed': '#360f00',
+              'secondary-fixed-dim': '#b7c8e1',
+              'surface-dim': '#d8dadc',
+              'surface-bright': '#f7f9fb',
+              'secondary-container': '#d0e1fb',
+              'surface-container-highest': '#e0e3e5',
+              'primary-fixed': '#dbe1ff',
+              'error-container': '#ffdad6',
+              'on-primary-fixed': '#00174b',
+              'on-primary': '#ffffff',
+              'surface-variant': '#e0e3e5',
+              'on-tertiary': '#ffffff',
+              'on-error-container': '#93000a',
+              'surface-container-low': '#f2f4f6',
+              'tertiary-container': '#bc4800',
+              'on-secondary-fixed': '#0b1c30',
+              'tertiary-fixed-dim': '#ffb596',
+              primary: '#004ac6',
+              'inverse-on-surface': '#eff1f3',
+              'secondary-fixed': '#d3e4fe',
+              'surface-container-lowest': '#ffffff',
+              'on-surface-variant': '#434655',
+              'on-tertiary-container': '#ffede6',
+              'surface-tint': '#0053db',
+              surface: '#f7f9fb',
+              'surface-container-high': '#e6e8ea',
+              error: '#ba1a1a',
+              'tertiary-fixed': '#ffdbcd',
+              'on-primary-fixed-variant': '#003ea8',
+              outline: '#737686',
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+            spacing: {
+              'margin-desktop': '64px',
+              gutter: '24px',
+              unit: '8px',
+              'margin-mobile': '16px',
+              'max-width': '1280px',
+            },
+            fontFamily: {
+              'headline-lg-mobile': ['Inter'],
+              'label-md': ['Inter'],
+              'headline-sm': ['Inter'],
+              'body-sm': ['Inter'],
+              'headline-xl': ['Inter'],
+              'headline-lg': ['Inter'],
+              'body-md': ['Inter'],
+              'label-sm': ['Inter'],
+              'body-lg': ['Inter'],
+              'headline-md': ['Inter'],
+            },
+            fontSize: {
+              'headline-lg-mobile': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'label-md': ['14px', { lineHeight: '20px', fontWeight: '500' }],
+              'headline-sm': [
+                '20px',
+                { lineHeight: '28px', fontWeight: '600' },
+              ],
+              'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+              'headline-xl': [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-lg': [
+                '30px',
+                {
+                  lineHeight: '38px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '600',
+                },
+              ],
+              'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'label-sm': [
+                '12px',
+                {
+                  lineHeight: '16px',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f7f9fb;
+      }
+    </style>
+  </head>
+  <body class="text-on-background bg-background min-h-screen flex flex-col">
+    <!-- TopNavBar -->
+    <header
+      class="bg-surface-container-lowest border-b border-outline-variant full-width top-0 sticky z-50"
+    >
+      <div
+        class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto h-16"
+      >
+        <div class="flex items-center gap-6">
+          <a
+            class="font-headline-md text-headline-md font-bold text-primary"
+            href="#"
+            >MahaSewa</a
+          >
+          <div class="hidden md:flex relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant font-label-md"
+              >search</span
+            >
+            <input
+              class="pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-sm font-body-sm w-64 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+              placeholder="Search services..."
+              type="text"
+            />
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+          <a
+            class="text-primary font-bold border-b-2 border-primary py-5 font-label-md text-label-md hover:text-primary transition-colors"
+            href="#"
+            >Browse</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <button
+            class="hidden md:block font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors cursor-pointer active:opacity-80"
+          >
+            Login
+          </button>
+          <button
+            class="bg-primary-container text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity cursor-pointer active:opacity-80"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </header>
+    <!-- Main Content -->
+    <main
+      class="flex-grow w-full max-w-max-width mx-auto px-margin-mobile md:px-margin-desktop py-8"
+    >
+      <!-- Breadcrumb -->
+      <nav
+        class="flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant mb-6"
+      >
+        <a class="hover:text-primary transition-colors" href="#">Home</a>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <a class="hover:text-primary transition-colors" href="#">Graphics</a>
+        <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+        <span class="text-on-background">Logo Design</span>
+      </nav>
+      <div class="flex flex-col lg:flex-row gap-gutter">
+        <!-- Left Column (70%) -->
+        <div class="w-full lg:w-[70%] flex flex-col gap-8">
+          <!-- Header -->
+          <div>
+            <h1
+              class="font-headline-xl text-headline-xl text-on-background mb-4"
+            >
+              Professional Logo Design for Your Brand
+            </h1>
+            <div
+              class="flex items-center gap-4 font-body-sm text-body-sm text-on-surface-variant"
+            >
+              <div class="flex items-center gap-1">
+                <img
+                  alt="Designer Avatar"
+                  class="w-8 h-8 rounded-full border border-outline-variant"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPcEpbgwRPn1pv21THR8y70LbNwtAVn6JPazBI5nGEJkMU3PY_Xkli0ii1wSDmhmkbnJVdA3nI3Cz5wrroWYyZl08MbSMMbhiU6onk6bwdPJnTW-ieYEwSxffGFJo2CDWitd-vV6TMZ-c0Gtznjzw5x1s9qnkHG-EkmrNF7dlibr2-9njh5bKH-SigXkCZeS0ZB02KZNlgr65QBrjYnKk81rgiSILPe0zTu9E9JtanzW-sAwtWnwEnpERUllXPhOqJ8Qg67f-P5RQ"
+                />
+                <span
+                  class="font-label-md text-label-md text-on-background ml-2"
+                  >CreativeStudio</span
+                >
+              </div>
+              <div class="flex items-center gap-1 text-tertiary-container">
+                <span
+                  class="material-symbols-outlined text-[18px]"
+                  style="font-variation-settings: 'FILL' 1"
+                  >star</span
+                >
+                <span class="font-label-md text-label-md">4.9</span>
+                <span>(120 reviews)</span>
+              </div>
+            </div>
+          </div>
+          <!-- Image Gallery -->
+          <div class="flex flex-col gap-4">
+            <div
+              class="w-full aspect-video rounded-xl overflow-hidden border border-outline-variant bg-surface-container-lowest"
+            >
+              <img
+                alt="Main service preview"
+                class="w-full h-full object-cover"
+                data-alt="A high-quality, modern mockup of a minimalist logo design presented on premium textured paper. The scene is brightly lit with soft, diffused studio lighting, casting gentle shadows that emphasize the paper's texture. The logo itself is sleek and contemporary, using a palette of deep blues and subtle metallic accents. The overall aesthetic is professional, clean, and perfectly aligned with a premium modern corporate brand identity."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4j9FwV1DFx9wLBy1FFlJ_BLIE1JgkyZu0QSWvcawY5wCQespMdweyC8uQyV5FDWJgOhMO0FkK3ft6DfK_Yz806HcfWTSdVojY1xqEtEWfCFvMogFUgdOTo2wgdt0dfRyCZNKXhnapodXS8zBrEw0ZyIYXCMLdMO_GhHiNLmdJolPkpOnO_6BfMh9Gd37WjO1k1XyAJGaYHpggC2P8N69cSGMr6iZlzaa6Q0dNkvQmVmbg_J8kBsFXAk8PVhcdcxvCvomo-xTxl-4"
+              />
+            </div>
+            <div class="flex gap-4 overflow-x-auto pb-2">
+              <button
+                class="w-24 aspect-video rounded-lg overflow-hidden border-2 border-primary flex-shrink-0"
+              >
+                <img
+                  alt="Thumbnail 1"
+                  class="w-full h-full object-cover"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPiT5xXBhUWjlZ7-rsve3t3SznjB-WTEJLB9xZJJv4-zfnqp8b1dLAuzouywEoLpoaqFJiS0L75LVrR6MnNIreRwMwOM8zd2-efGL6mmQf51yAFkSbt2MyHzwfXHkSzUoCTXBuE6KWzIMsxIK9z3n81K-V7f_btswIW36FuzJPaeZDv1BUF8n46XxX-a_H8YYZO_GTxotcMJCl1Vpjy2jRuLKGdFjatiz-FShVoH4AU8OZZzFJAo2g6q1WBUthOTTWH4rm6egkalI"
+                />
+              </button>
+              <button
+                class="w-24 aspect-video rounded-lg overflow-hidden border border-outline-variant opacity-70 hover:opacity-100 transition-opacity flex-shrink-0"
+              >
+                <img
+                  alt="Thumbnail 2"
+                  class="w-full h-full object-cover"
+                  data-alt="A secondary view showing the logo design applied to a set of business cards and stationery. The layout is clean and minimal, resting on a flat, light grey surface. The lighting is crisp and even, highlighting the stark contrast and sharp typography of the modern corporate style. The mood is professional and highly organized."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5fuVi5ev5ACIMVAtX4Dz-WZWOFEPbSH4WymGSdP2QbEvF7kSh4PsRiYRptM_uogefxfTe7NxMnN0wh6D6KZkJ2Cl63DiRjFN6q1nOFWv8BREll3b1cMaoo6ol96ob0hO0bcfFiTYw7Vuen9j-CLfwod1hQ3ecpANf49qFSr0Xde9LnPYYxjsACeZbYXfjv1xX-GXTlP0_eWNgmnT83uFPOMpUXDGCI8gteYht2GKSaIqJh2zRe52KE4PWUBx-lgYJViE5FIcnbSM"
+                />
+              </button>
+              <button
+                class="w-24 aspect-video rounded-lg overflow-hidden border border-outline-variant opacity-70 hover:opacity-100 transition-opacity flex-shrink-0"
+              >
+                <img
+                  alt="Thumbnail 3"
+                  class="w-full h-full object-cover"
+                  data-alt="A third view displaying the logo concept integrated into a sleek digital interface mockup, shown on a modern smartphone screen. The device rests on a clean white desk next to a minimal plant. The lighting reflects a bright, modern light-mode environment, emphasizing the brand's adaptability to digital platforms in a clean, minimalist style."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKCgUXDt5ucq_lgmKArDEI5xys8yUEfC21pr65bIqZBdyYdkwdxD16Rl2CUC8NhHRqj7Y_CCzubAtNI3qfjCRD5AESexk7yOAqophUwOOSfTxYtnugKVyHVOzhJNCWnW77EwD5RFbiX1BQrjwxhQrFQ5GiTK5C3FjHWNEGs4r4ITtOJMHbBObDm1R6chW4fYcf8HH_xlixjYP8khFLBbAR3WZ7o_-5vBSA7x0Ip7V4AF4U4F1BTha0lRBW7xTCo_BbL6icjahGwzc"
+                />
+              </button>
+            </div>
+          </div>
+          <!-- Description -->
+          <div
+            class="bg-surface-container-lowest rounded-xl border border-outline-variant p-6 md:p-8"
+          >
+            <h2
+              class="font-headline-md text-headline-md text-on-background mb-4"
+            >
+              About This Service
+            </h2>
+            <div
+              class="font-body-md text-body-md text-on-surface-variant space-y-4"
+            >
+              <p>
+                Welcome! I specialize in crafting modern, minimalist, and
+                memorable logos that perfectly encapsulate your brand's
+                identity. With over 5 years of experience in brand design, I
+                focus on creating visual assets that communicate professionalism
+                and trust.
+              </p>
+              <p><strong>What you will get:</strong></p>
+              <ul class="list-disc pl-5 space-y-2">
+                <li>High-resolution files (PNG, JPEG)</li>
+                <li>Vector source files (AI, EPS, SVG)</li>
+                <li>Transparent background options</li>
+                <li>Full commercial rights</li>
+                <li>Prompt and professional communication</li>
+              </ul>
+              <p>
+                My design process involves understanding your core business
+                values, researching your industry, and iterating on concepts
+                until we find the perfect mark for your company. Let's build a
+                strong foundation for your brand together.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column (30%) -->
+        <div class="w-full lg:w-[30%]">
+          <div
+            class="sticky top-24 bg-surface-container-lowest rounded-xl border border-outline-variant p-6 shadow-sm"
+          >
+            <div class="flex justify-between items-start mb-6">
+              <h3 class="font-headline-sm text-headline-sm text-on-background">
+                Standard Package
+              </h3>
+              <span class="font-headline-md text-headline-md text-primary"
+                >$50</span
+              >
+            </div>
+            <p class="font-body-sm text-body-sm text-on-surface-variant mb-6">
+              Perfect for startups and small businesses looking for a
+              professional and clean brand identity.
+            </p>
+            <div
+              class="flex flex-col gap-3 font-body-sm text-body-sm text-on-background mb-8"
+            >
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >schedule</span
+                >
+                <span>3 Days Delivery</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >autorenew</span
+                >
+                <span>2 Revisions</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >check_circle</span
+                >
+                <span>Source File Included</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >check_circle</span
+                >
+                <span>High Resolution</span>
+              </div>
+            </div>
+            <button
+              class="w-full bg-primary-container text-on-primary font-label-md text-label-md py-3 rounded-lg hover:opacity-90 transition-opacity active:opacity-80 flex justify-center items-center gap-2"
+            >
+              Hubungi Jasa
+              <span class="material-symbols-outlined text-[18px]"
+                >arrow_forward</span
+              >
+            </button>
+            <div class="mt-4 text-center">
+              <button
+                class="font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors bg-transparent border-none cursor-pointer"
+              >
+                Compare Packages
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-surface-container border-t border-outline-variant mt-12">
+      <div
+        class="flex flex-col md:flex-row justify-between items-center py-8 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto gap-4"
+      >
+        <div
+          class="font-headline-sm text-headline-sm font-bold text-on-surface"
+        >
+          MahaSewa
+        </div>
+        <div class="flex gap-6 font-label-sm text-label-sm">
+          <a
+            class="text-on-secondary-container hover:text-primary transition-colors"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-secondary-container hover:text-primary transition-colors"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-secondary-container hover:text-primary transition-colors"
+            href="#"
+            >Support</a
+          >
+        </div>
+        <div class="font-body-sm text-body-sm text-on-surface-variant">
+          © 2024 MahaSewa. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

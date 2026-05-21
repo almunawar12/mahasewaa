@@ -1,0 +1,718 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MahaSewa - Order Management</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'primary-fixed-dim': '#b4c5ff',
+              'on-surface': '#191c1e',
+              'on-primary-fixed-variant': '#003ea8',
+              'secondary-fixed': '#d3e4fe',
+              outline: '#737686',
+              'on-error-container': '#93000a',
+              'surface-container-low': '#f2f4f6',
+              'surface-container': '#eceef0',
+              'surface-dim': '#d8dadc',
+              'tertiary-fixed-dim': '#ffb596',
+              'on-primary-fixed': '#00174b',
+              'on-primary': '#ffffff',
+              tertiary: '#943700',
+              'on-secondary-fixed-variant': '#38485d',
+              'on-primary-container': '#eeefff',
+              'on-tertiary-container': '#ffede6',
+              'surface-container-highest': '#e0e3e5',
+              'on-secondary-container': '#54647a',
+              secondary: '#505f76',
+              'secondary-container': '#d0e1fb',
+              'surface-variant': '#e0e3e5',
+              'inverse-primary': '#b4c5ff',
+              'tertiary-container': '#bc4800',
+              'on-surface-variant': '#434655',
+              'surface-container-high': '#e6e8ea',
+              'on-tertiary-fixed': '#360f00',
+              'surface-bright': '#f7f9fb',
+              'tertiary-fixed': '#ffdbcd',
+              background: '#f7f9fb',
+              'on-tertiary': '#ffffff',
+              'on-background': '#191c1e',
+              error: '#ba1a1a',
+              primary: '#004ac6',
+              'surface-tint': '#0053db',
+              surface: '#f7f9fb',
+              'outline-variant': '#c3c6d7',
+              'on-error': '#ffffff',
+              'secondary-fixed-dim': '#b7c8e1',
+              'inverse-on-surface': '#eff1f3',
+              'primary-fixed': '#dbe1ff',
+              'on-secondary': '#ffffff',
+              'error-container': '#ffdad6',
+              'on-tertiary-fixed-variant': '#7d2d00',
+              'on-secondary-fixed': '#0b1c30',
+              'surface-container-lowest': '#ffffff',
+              'primary-container': '#2563eb',
+              'inverse-surface': '#2d3133',
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+            spacing: {
+              unit: '8px',
+              'max-width': '1280px',
+              'margin-desktop': '64px',
+              'margin-mobile': '16px',
+              gutter: '24px',
+            },
+            fontFamily: {
+              'headline-lg-mobile': ['Inter'],
+              'body-lg': ['Inter'],
+              'label-sm': ['Inter'],
+              'headline-xl': ['Inter'],
+              'headline-lg': ['Inter'],
+              'headline-sm': ['Inter'],
+              'body-sm': ['Inter'],
+              'body-md': ['Inter'],
+              'headline-md': ['Inter'],
+              'label-md': ['Inter'],
+            },
+            fontSize: {
+              'headline-lg-mobile': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+              'label-sm': [
+                '12px',
+                {
+                  lineHeight: '16px',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'headline-xl': [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-lg': [
+                '30px',
+                {
+                  lineHeight: '38px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '600',
+                },
+              ],
+              'headline-sm': [
+                '20px',
+                { lineHeight: '28px', fontWeight: '600' },
+              ],
+              'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+              'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'label-md': ['14px', { lineHeight: '20px', fontWeight: '500' }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+      }
+      .material-symbols-outlined.fill {
+        font-variation-settings: 'FILL' 1;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background font-body-md antialiased flex">
+    <!-- SideNavBar -->
+    <nav
+      class="h-screen w-64 fixed left-0 top-0 border-r border-outline-variant bg-surface-container-lowest z-50 flex flex-col py-8 px-4"
+    >
+      <div class="mb-8 px-4">
+        <h1 class="text-headline-md font-headline-md font-bold text-primary">
+          MahaSewa
+        </h1>
+        <p class="text-label-md font-label-md text-on-surface-variant mt-1">
+          Admin Console
+        </p>
+      </div>
+      <ul class="flex-1 space-y-2">
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="dashboard"
+              >dashboard</span
+            >
+            <span class="text-label-md font-label-md">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 text-primary font-bold bg-secondary-container rounded-lg scale-[0.98] duration-150 transition-transform"
+            href="#"
+          >
+            <span
+              class="material-symbols-outlined fill"
+              data-icon="receipt_long"
+              data-weight="fill"
+              >receipt_long</span
+            >
+            <span class="text-label-md font-label-md">Order Management</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="inventory_2"
+              >inventory_2</span
+            >
+            <span class="text-label-md font-label-md">Service Catalog</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="chat">chat</span>
+            <span class="text-label-md font-label-md">Message Center</span>
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-low hover:bg-surface-container-high transition-colors rounded-lg"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="settings"
+              >settings</span
+            >
+            <span class="text-label-md font-label-md">Settings</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-auto px-4 pt-6 border-t border-outline-variant">
+        <button
+          class="w-full py-2.5 bg-primary-container text-on-primary rounded-lg text-label-md font-label-md font-semibold hover:bg-primary transition-colors"
+        >
+          Upgrade Plan
+        </button>
+      </div>
+    </nav>
+    <!-- Main Content Wrapper -->
+    <div class="flex-1 ml-64 min-h-screen">
+      <!-- TopNavBar -->
+      <header
+        class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface-container-lowest/80 backdrop-blur-md shadow-sm border-b border-outline-variant flex justify-between items-center h-16 px-margin-desktop"
+      >
+        <div class="flex items-center w-full max-w-md">
+          <div
+            class="relative w-full focus-within:ring-2 focus-within:ring-primary/20 rounded-lg transition-all"
+          >
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-surface-container-low border border-outline-variant rounded-lg text-body-sm font-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary bg-white"
+              placeholder="Search orders..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low"
+          >
+            <span class="material-symbols-outlined" data-icon="notifications"
+              >notifications</span
+            >
+          </button>
+          <button
+            class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low"
+          >
+            <span class="material-symbols-outlined" data-icon="account_circle"
+              >account_circle</span
+            >
+          </button>
+          <button
+            class="ml-4 px-4 py-2 bg-primary text-on-primary rounded-lg text-label-md font-label-md font-medium hover:bg-primary-container transition-colors shadow-sm"
+          >
+            Buat Jasa Baru
+          </button>
+        </div>
+      </header>
+      <!-- Page Content -->
+      <main class="pt-24 px-margin-desktop pb-12 max-w-max-width mx-auto">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4"
+        >
+          <div>
+            <h2 class="text-headline-lg font-headline-lg text-on-surface">
+              Order Management
+            </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant mt-2">
+              View, filter, and manage all service requests.
+            </p>
+          </div>
+          <div class="flex gap-3">
+            <button
+              class="flex items-center gap-2 px-4 py-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors shadow-sm"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >filter_list</span
+              >
+              Filter
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 border border-outline-variant bg-surface-container-lowest rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors shadow-sm"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >download</span
+              >
+              Export
+            </button>
+          </div>
+        </div>
+        <!-- Tabs -->
+        <div
+          class="border-b border-outline-variant mb-6 flex overflow-x-auto hide-scrollbar"
+        >
+          <button
+            class="px-6 py-3 text-label-md font-label-md text-primary border-b-2 border-primary font-medium whitespace-nowrap"
+          >
+            All Orders
+          </button>
+          <button
+            class="px-6 py-3 text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-lowest/50 transition-colors whitespace-nowrap"
+          >
+            In Progress
+          </button>
+          <button
+            class="px-6 py-3 text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-lowest/50 transition-colors whitespace-nowrap"
+          >
+            Review Requested
+          </button>
+          <button
+            class="px-6 py-3 text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-lowest/50 transition-colors whitespace-nowrap"
+          >
+            Completed
+          </button>
+          <button
+            class="px-6 py-3 text-label-md font-label-md text-on-surface-variant hover:text-primary hover:bg-surface-container-lowest/50 transition-colors whitespace-nowrap"
+          >
+            Cancelled
+          </button>
+        </div>
+        <!-- Table Card -->
+        <div
+          class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden"
+        >
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr
+                  class="border-b border-outline-variant bg-surface-container-low/50"
+                >
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider"
+                  >
+                    Order ID
+                  </th>
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider"
+                  >
+                    Client
+                  </th>
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider"
+                  >
+                    Service Type
+                  </th>
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider"
+                  >
+                    Amount
+                  </th>
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider"
+                  >
+                    Deadline
+                  </th>
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider"
+                  >
+                    Status
+                  </th>
+                  <th
+                    class="px-6 py-4 text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider text-right"
+                  >
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody
+                class="divide-y divide-outline-variant text-body-sm font-body-sm text-on-surface"
+              >
+                <!-- Row 1 -->
+                <tr class="hover:bg-surface-bright/50 transition-colors group">
+                  <td class="px-6 py-4 font-medium">#ORD-104</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <img
+                        alt="Budi Santoso avatar"
+                        class="w-8 h-8 rounded-full border border-outline-variant object-cover"
+                        data-alt="A professional headshot of an Asian man with a warm smile, wearing a casual light blue button-down shirt. The background is a soft, blurred modern office environment. The lighting is bright and natural, creating a clean, inviting corporate aesthetic suitable for a digital profile."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOnSx1cg1OT6NTOfIDFQveU1skuGHW0OuGloiaVmoZIMlZQoh9sRVCLO40fNlIa0G_mUCzHYWVV2vJ6ze_GX0Ep15OPAGIETznNFS5SuZzUwjE_CbCtD2ZP-S-ksBZZulnL31yHBroCKqLGR0G9JvUFIwRW3X_x-7__sSeGw50Ym1Z2pyYJVFegMMb5NeTgOiR3o1E1MrQxbrWdtbw93D_qfwhRfYZWgn6vtpXCb0jyR2OcfwqBXoeWuCJiYkQaVFbZmOaWEMsaKQ"
+                      />
+                      <span class="font-medium text-on-surface"
+                        >Budi Santoso</span
+                      >
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Web Development
+                  </td>
+                  <td class="px-6 py-4 font-medium">Rp 4.500.000</td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Oct 24, 2023
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-blue-50 text-blue-700 border border-blue-200"
+                    >
+                      In Progress
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-right">
+                    <div
+                      class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-fixed-dim/20 rounded-md transition-colors"
+                        title="View Details"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-colors"
+                        title="Manage"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >more_vert</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr class="hover:bg-surface-bright/50 transition-colors group">
+                  <td class="px-6 py-4 font-medium">#ORD-103</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary text-label-sm font-bold"
+                      >
+                        AR
+                      </div>
+                      <span class="font-medium text-on-surface"
+                        >Ani Rahayu</span
+                      >
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Graphic Design
+                  </td>
+                  <td class="px-6 py-4 font-medium">Rp 1.200.000</td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Oct 20, 2023
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-yellow-50 text-yellow-700 border border-yellow-200"
+                    >
+                      Pending Payment
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-right">
+                    <div
+                      class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-fixed-dim/20 rounded-md transition-colors"
+                        title="View Details"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-colors"
+                        title="Manage"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >more_vert</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr class="hover:bg-surface-bright/50 transition-colors group">
+                  <td class="px-6 py-4 font-medium">#ORD-102</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <img
+                        alt="Citra Kirana avatar"
+                        class="w-8 h-8 rounded-full border border-outline-variant object-cover"
+                        data-alt="A professional headshot of a young woman with glasses, looking directly at the camera with a confident expression. The background is a clean, minimalist white wall. The lighting is studio-quality, emphasizing clarity and professionalism suitable for a business profile."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAzgmJ9Y4uBivIRXj2j4Twnx5V10aWjVr0_Mics-FBKumQIl8Yu3jLMf9bMrQJQwd30tbyLKY6k73wH53oeouOSs6d0MTpqJdg7Ai_Wg95tav5dCtZpUI5jMLX7zFgzvUspxP27Aoxnvt2fhKji1omamW6KNKXSpUP9CZA3LaFCtbBslhqVoT200peC1y7R36wiRlrwK6bS-fBjFZHUYiWrvFfnVgDrmIJ0QkPK1VZjvjNL3nZl8gYkXdFnv3OLdP7H4PvXfyKv18"
+                      />
+                      <span class="font-medium text-on-surface"
+                        >Citra Kirana</span
+                      >
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    SEO Optimization
+                  </td>
+                  <td class="px-6 py-4 font-medium">Rp 3.000.000</td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Oct 18, 2023
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-purple-50 text-purple-700 border border-purple-200"
+                    >
+                      Review Requested
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-right">
+                    <div
+                      class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-fixed-dim/20 rounded-md transition-colors"
+                        title="View Details"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-colors"
+                        title="Manage"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >more_vert</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr class="hover:bg-surface-bright/50 transition-colors group">
+                  <td class="px-6 py-4 font-medium">#ORD-101</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <img
+                        alt="Dimas Anggara avatar"
+                        class="w-8 h-8 rounded-full border border-outline-variant object-cover"
+                        data-alt="A headshot of a smiling man in his late 30s with neat facial hair, wearing a dark blazer. The setting implies a modern co-working space with subtle, warm ambient lighting. The image conveys approachability and reliability for a professional marketplace context."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgTEhA8BE7iUnAMKQ2Ct3yIkWmg_z-0wAY-FxJsGJ573snnkiR4VsQqvl6jrc5jpGaLTfkQ5O-WB-HSTyHvsPc8HDkfIcTCop_MgJfYIj6FKctZIrLcFkQETSK25KAwhGR1buW6EWSHFAaJHW9Ku0skjjf0TzQD7Vd4htEELY50hqkbBfcTIKTAptH8znZ_Crif5ilP_cLyDxJGO0N8YgYm2tlgW-_jDFLDSk2CHFOVDD2OjUlyrU6ZKFyVrZHO7mJ3HF2XdIQ-Ks"
+                      />
+                      <span class="font-medium text-on-surface"
+                        >Dimas Anggara</span
+                      >
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    App Translation
+                  </td>
+                  <td class="px-6 py-4 font-medium">Rp 850.000</td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Oct 15, 2023
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-green-50 text-green-700 border border-green-200"
+                    >
+                      Completed
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-right">
+                    <div
+                      class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-fixed-dim/20 rounded-md transition-colors"
+                        title="View Details"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-colors"
+                        title="Manage"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >more_vert</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr class="hover:bg-surface-bright/50 transition-colors group">
+                  <td class="px-6 py-4 font-medium">#ORD-100</td>
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div
+                        class="w-8 h-8 rounded-full bg-primary-fixed-dim flex items-center justify-center text-on-primary-fixed text-label-sm font-bold"
+                      >
+                        ES
+                      </div>
+                      <span class="font-medium text-on-surface">Eka Surya</span>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 text-on-surface-variant">Copywriting</td>
+                  <td class="px-6 py-4 font-medium">Rp 500.000</td>
+                  <td class="px-6 py-4 text-on-surface-variant">
+                    Oct 10, 2023
+                  </td>
+                  <td class="px-6 py-4">
+                    <span
+                      class="inline-flex items-center px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-green-50 text-green-700 border border-green-200"
+                    >
+                      Completed
+                    </span>
+                  </td>
+                  <td class="px-6 py-4 text-right">
+                    <div
+                      class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity"
+                    >
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-primary hover:bg-primary-fixed-dim/20 rounded-md transition-colors"
+                        title="View Details"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="p-1.5 text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded-md transition-colors"
+                        title="Manage"
+                      >
+                        <span class="material-symbols-outlined text-[20px]"
+                          >more_vert</span
+                        >
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- Pagination -->
+          <div
+            class="px-6 py-4 border-t border-outline-variant bg-surface-container-lowest flex items-center justify-between"
+          >
+            <div class="text-body-sm text-on-surface-variant">
+              Showing <span class="font-medium text-on-surface">1</span> to
+              <span class="font-medium text-on-surface">5</span> of
+              <span class="font-medium text-on-surface">42</span> results
+            </div>
+            <div class="flex items-center gap-1">
+              <button
+                class="p-2 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container-low disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled=""
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_left</span
+                >
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded-md bg-primary text-on-primary text-label-sm font-medium"
+              >
+                1
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded-md text-on-surface-variant hover:bg-surface-container-low text-label-sm font-medium"
+              >
+                2
+              </button>
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded-md text-on-surface-variant hover:bg-surface-container-low text-label-sm font-medium"
+              >
+                3
+              </button>
+              <span
+                class="w-8 h-8 flex items-center justify-center text-on-surface-variant"
+                >...</span
+              >
+              <button
+                class="w-8 h-8 flex items-center justify-center rounded-md text-on-surface-variant hover:bg-surface-container-low text-label-sm font-medium"
+              >
+                9
+              </button>
+              <button
+                class="p-2 border border-outline-variant rounded-md text-on-surface-variant hover:bg-surface-container-low"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

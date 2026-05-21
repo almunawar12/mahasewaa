@@ -1,0 +1,707 @@
+<!doctype html>
+
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MahaSewa - Temukan Jasa Digital Terbaik</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'inverse-surface': '#2d3133',
+              'on-secondary-fixed-variant': '#38485d',
+              'inverse-primary': '#b4c5ff',
+              'primary-fixed-dim': '#b4c5ff',
+              'on-tertiary-fixed-variant': '#7d2d00',
+              'on-error': '#ffffff',
+              'on-secondary': '#ffffff',
+              'on-surface': '#191c1e',
+              background: '#f7f9fb',
+              'on-primary-container': '#eeefff',
+              'outline-variant': '#c3c6d7',
+              'on-background': '#191c1e',
+              tertiary: '#943700',
+              'surface-container': '#eceef0',
+              'primary-container': '#2563eb',
+              secondary: '#505f76',
+              'on-secondary-container': '#54647a',
+              'on-tertiary-fixed': '#360f00',
+              'secondary-fixed-dim': '#b7c8e1',
+              'surface-dim': '#d8dadc',
+              'surface-bright': '#f7f9fb',
+              'secondary-container': '#d0e1fb',
+              'surface-container-highest': '#e0e3e5',
+              'primary-fixed': '#dbe1ff',
+              'error-container': '#ffdad6',
+              'on-primary-fixed': '#00174b',
+              'on-primary': '#ffffff',
+              'surface-variant': '#e0e3e5',
+              'on-tertiary': '#ffffff',
+              'on-error-container': '#93000a',
+              'surface-container-low': '#f2f4f6',
+              'tertiary-container': '#bc4800',
+              'on-secondary-fixed': '#0b1c30',
+              'tertiary-fixed-dim': '#ffb596',
+              primary: '#004ac6',
+              'inverse-on-surface': '#eff1f3',
+              'secondary-fixed': '#d3e4fe',
+              'surface-container-lowest': '#ffffff',
+              'on-surface-variant': '#434655',
+              'on-tertiary-container': '#ffede6',
+              'surface-tint': '#0053db',
+              surface: '#f7f9fb',
+              'surface-container-high': '#e6e8ea',
+              error: '#ba1a1a',
+              'tertiary-fixed': '#ffdbcd',
+              'on-primary-fixed-variant': '#003ea8',
+              outline: '#737686',
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+            spacing: {
+              'margin-desktop': '64px',
+              gutter: '24px',
+              unit: '8px',
+              'margin-mobile': '16px',
+              'max-width': '1280px',
+            },
+            fontFamily: {
+              'headline-lg-mobile': ['Inter'],
+              'label-md': ['Inter'],
+              'headline-sm': ['Inter'],
+              'body-sm': ['Inter'],
+              'headline-xl': ['Inter'],
+              'headline-lg': ['Inter'],
+              'body-md': ['Inter'],
+              'label-sm': ['Inter'],
+              'body-lg': ['Inter'],
+              'headline-md': ['Inter'],
+            },
+            fontSize: {
+              'headline-lg-mobile': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'label-md': ['14px', { lineHeight: '20px', fontWeight: '500' }],
+              'headline-sm': [
+                '20px',
+                { lineHeight: '28px', fontWeight: '600' },
+              ],
+              'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+              'headline-xl': [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-lg': [
+                '30px',
+                {
+                  lineHeight: '38px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '600',
+                },
+              ],
+              'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'label-sm': [
+                '12px',
+                {
+                  lineHeight: '16px',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: theme('colors.surface-container-lowest');
+        color: theme('colors.on-surface');
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+      }
+      .icon-fill {
+        font-variation-settings: 'FILL' 1;
+      }
+    </style>
+  </head>
+  <body class="antialiased min-h-screen flex flex-col">
+    <!-- TopNavBar -->
+    <header
+      class="bg-surface-container-lowest dark:bg-inverse-surface border-b border-outline-variant dark:border-on-surface-variant sticky top-0 z-50"
+    >
+      <div
+        class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto h-16"
+      >
+        <div class="flex items-center gap-8">
+          <a
+            class="font-headline-md text-headline-md font-bold text-primary dark:text-inverse-primary tracking-tight"
+            href="#"
+            >MahaSewa</a
+          >
+          <div class="hidden md:flex relative w-64 lg:w-96">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+              placeholder="Cari jasa..."
+              type="text"
+            />
+          </div>
+        </div>
+        <nav class="hidden md:flex items-center gap-6">
+          <a
+            class="text-on-surface-variant dark:text-surface-variant font-label-md text-label-md hover:text-primary dark:hover:text-inverse-primary hover:bg-surface-container-low transition-colors px-3 py-2 rounded-md"
+            href="#"
+            >Browse</a
+          >
+          <div class="flex items-center gap-3">
+            <button
+              class="font-label-md text-label-md text-on-surface hover:text-primary transition-colors px-4 py-2 border border-outline-variant rounded-lg"
+            >
+              Login
+            </button>
+            <button
+              class="font-label-md text-label-md bg-primary-container text-on-primary px-4 py-2 rounded-lg hover:opacity-90 transition-opacity"
+            >
+              Register
+            </button>
+          </div>
+        </nav>
+        <button class="md:hidden text-on-surface">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+      </div>
+    </header>
+    <main class="flex-grow">
+      <!-- Hero Section -->
+      <section
+        class="py-16 md:py-24 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto text-center flex flex-col items-center justify-center min-h-[614px]"
+      >
+        <h1
+          class="font-headline-xl text-headline-xl text-on-surface mb-6 max-w-4xl mx-auto"
+        >
+          Temukan Jasa Digital Terbaik
+        </h1>
+        <p
+          class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-2xl mx-auto"
+        >
+          Solusi profesional untuk kebutuhan bisnis Anda. Temukan desainer,
+          penulis, dan pengembang handal dalam hitungan menit.
+        </p>
+        <div class="w-full max-w-3xl relative md:hidden mb-8">
+          <span
+            class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-2xl"
+            >search</span
+          >
+          <input
+            class="w-full pl-12 pr-4 py-4 bg-white border border-outline-variant rounded-xl font-body-md text-body-md shadow-[0_4px_15px_rgba(0,0,0,0.05)] focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all text-lg"
+            placeholder="Cari layanan apa hari ini?"
+            type="text"
+          />
+        </div>
+        <div
+          class="hidden md:flex w-full max-w-3xl bg-white rounded-xl shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-outline-variant overflow-hidden"
+        >
+          <div class="flex-grow relative flex items-center">
+            <span
+              class="material-symbols-outlined absolute left-4 text-on-surface-variant"
+              >search</span
+            >
+            <input
+              class="w-full pl-12 pr-4 py-4 bg-transparent border-none font-body-md text-body-md focus:outline-none h-full"
+              placeholder="Cari layanan apa hari ini?"
+              type="text"
+            />
+          </div>
+          <button
+            class="bg-primary-container text-on-primary px-8 py-4 font-label-md text-label-md hover:bg-primary transition-colors h-full"
+          >
+            Cari
+          </button>
+        </div>
+        <div class="flex flex-wrap justify-center gap-3 mt-8">
+          <span class="font-label-sm text-label-sm text-on-surface-variant py-2"
+            >Populer:</span
+          >
+          <a
+            class="font-label-sm text-label-sm bg-surface-container-low px-3 py-2 rounded-full border border-outline-variant hover:border-primary transition-colors"
+            href="#"
+            >Desain Logo</a
+          >
+          <a
+            class="font-label-sm text-label-sm bg-surface-container-low px-3 py-2 rounded-full border border-outline-variant hover:border-primary transition-colors"
+            href="#"
+            >Web Development</a
+          >
+          <a
+            class="font-label-sm text-label-sm bg-surface-container-low px-3 py-2 rounded-full border border-outline-variant hover:border-primary transition-colors"
+            href="#"
+            >Copywriting</a
+          >
+        </div>
+      </section>
+      <!-- Categories Section -->
+      <section
+        class="py-12 bg-surface-bright px-margin-mobile md:px-margin-desktop border-y border-outline-variant"
+      >
+        <div class="max-w-max-width mx-auto">
+          <h2
+            class="font-headline-lg text-headline-lg md:font-headline-lg text-on-surface mb-8"
+          >
+            Kategori Populer
+          </h2>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-gutter">
+            <a
+              class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest border border-outline-variant rounded-xl hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] hover:border-primary/50 transition-all"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined text-4xl mb-3 text-secondary group-hover:text-primary transition-colors"
+                >design_services</span
+              >
+              <span
+                class="font-label-md text-label-md text-on-surface text-center"
+                >Desain Grafis</span
+              >
+            </a>
+            <a
+              class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest border border-outline-variant rounded-xl hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] hover:border-primary/50 transition-all"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined text-4xl mb-3 text-secondary group-hover:text-primary transition-colors"
+                >code</span
+              >
+              <span
+                class="font-label-md text-label-md text-on-surface text-center"
+                >Programming &amp; Tech</span
+              >
+            </a>
+            <a
+              class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest border border-outline-variant rounded-xl hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] hover:border-primary/50 transition-all"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined text-4xl mb-3 text-secondary group-hover:text-primary transition-colors"
+                >edit_document</span
+              >
+              <span
+                class="font-label-md text-label-md text-on-surface text-center"
+                >Penulisan &amp; Terjemahan</span
+              >
+            </a>
+            <a
+              class="group flex flex-col items-center justify-center p-6 bg-surface-container-lowest border border-outline-variant rounded-xl hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] hover:border-primary/50 transition-all"
+              href="#"
+            >
+              <span
+                class="material-symbols-outlined text-4xl mb-3 text-secondary group-hover:text-primary transition-colors"
+                >campaign</span
+              >
+              <span
+                class="font-label-md text-label-md text-on-surface text-center"
+                >Digital Marketing</span
+              >
+            </a>
+          </div>
+        </div>
+      </section>
+      <!-- Gig Cards Section -->
+      <section
+        class="py-16 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto"
+      >
+        <div class="flex justify-between items-end mb-8">
+          <h2
+            class="font-headline-lg text-headline-lg md:font-headline-lg text-on-surface"
+          >
+            Jasa Rekomendasi
+          </h2>
+          <a
+            class="font-label-md text-label-md text-primary hover:underline hidden md:block"
+            href="#"
+            >Lihat Semua</a
+          >
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- Gig Card 1 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-shadow group cursor-pointer flex flex-col h-full"
+          >
+            <div
+              class="aspect-video w-full bg-surface-container-high relative overflow-hidden"
+            >
+              <img
+                alt="Graphic Design Portfolio"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                data-alt="A modern and sleek digital graphic design portfolio displayed on a bright screen. The composition showcases clean typography and minimalist vector graphics. The lighting is soft and natural, creating a professional and inviting atmosphere. The overall style is modern corporate, emphasizing clean lines and sophisticated simplicity."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0V_2yFg8aHhC0BhOtMAAGlOoy80JICYXdmtabNoaoCuBdfvuBsHb1c3RVydBN5wLQMm1ajxWWQBGKA4-i8H-yWy1J9RW8XCkJSc_K6_iqUQRZAJvOX2iWkg8fABQ8QNEQRC9e3fhFwG3bmlIr_jzJB3xPv4EBSgGD8Zke_6YdeaGa9ZQ2VX4fjGUz7wvVVFsaNAyacR1JxGDiJjHKXJ9XXLo2TyV0AgCOlFNZJevhsJsu29C_E53CNSS8XaOCooiL0Hi1rrN6u6Y"
+              />
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3">
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-variant overflow-hidden"
+                >
+                  <img
+                    alt="Seller Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A professional headshot of a female freelance designer. She has a friendly smile and is wearing a simple, modern blouse. The background is a clean, bright white wall, consistent with a clean, light-mode design aesthetic. Lighting is even and flattering, emphasizing a trustworthy and approachable persona."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKu70zceegmINQsEI_sAF1kZVZYkkQpLcGpif5b7wzZh4emYTkvOaX8Hr6Rxnqk23_r-V95zpkEMVJx5ErAqnXzE_2mjJWGmBKPD6R_3vWj-ygp_ZOIllVhf18hsbScR-X60ZA7ZXEsmclaM32Bx9FgfV3Zj_4_lowqOA0B3adHuKpSqwEvAGc0q-oxqHJrjV0VrG44XhUV3GqouqwXRzGJ3PCJH-4_7HtABPInrrNkDoWCGtvNVEYTv0aj9mf3MTyKKtpnZ2Edqc"
+                  />
+                </div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Budi Santoso</span
+                >
+              </div>
+              <h3
+                class="font-body-md text-body-md text-on-surface mb-2 line-clamp-2 hover:text-primary transition-colors flex-grow"
+              >
+                Saya akan membuat desain logo profesional untuk bisnis Anda
+              </h3>
+              <div class="flex items-center gap-1 mb-4">
+                <span
+                  class="material-symbols-outlined text-tertiary-container text-sm icon-fill"
+                  >star</span
+                >
+                <span
+                  class="font-label-sm text-label-sm font-bold text-on-surface"
+                  >4.9</span
+                >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >(120)</span
+                >
+              </div>
+              <div
+                class="pt-3 border-t border-outline-variant flex justify-between items-center mt-auto"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                  >favorite</span
+                >
+                <div class="text-right">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant uppercase text-[10px]"
+                    >Mulai dari</span
+                  >
+                  <div
+                    class="font-headline-sm text-headline-sm text-on-surface"
+                  >
+                    $15
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Gig Card 2 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-shadow group cursor-pointer flex flex-col h-full"
+          >
+            <div
+              class="aspect-video w-full bg-surface-container-high relative overflow-hidden"
+            >
+              <img
+                alt="Coding on Laptop"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                data-alt="A close-up shot of a modern laptop screen displaying lines of code in a dark theme editor. The laptop rests on a clean, light-colored desk in a well-lit modern office environment. The ambient lighting is bright and cool, reflecting a clean, professional workspace. The focus is sharp on the code, blurring the background slightly."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNp2c0WIcfRu7cm2slnQqq4ANHQ2exKVZ0fAl1Tvl3ZSSgq0jMFKfemGY3Dx8GbTbYIWCjC5qcPpnoLPBrI-3mda6AyCxhNbiovFS0_VVNegUcg0hLgxRJSnz91DUdM6pvLf3_NInmNaZTrmLYbLUhcxUVg-L1m8SkUJ_5x8U7-bS74lTA-fTXB6icKWODCb9itPtYCSfRDwhx3HxbXClFcRv_PTN7maZtLm7N4iRVSGiv5wE6oHkHJQimSyYcUJ98tHKaN8yssy8"
+              />
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3">
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-variant overflow-hidden"
+                >
+                  <img
+                    alt="Seller Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A professional headshot of a male web developer. He looks confident and is wearing a neat casual shirt. The background is slightly blurred but clearly a bright, modern indoor setting. The lighting is soft and natural, contributing to a clean, trustworthy professional image."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDq6lULugGNtkojiJPaRa-E3OsTX0csW1FZogwzP_CBY_w_tMGxRftU1x-DFXm0se-VyYLqD1p0TLE062zBziHPjst1Pe6U9AQFMYUSJhYYBJxZSP5KfE9QQAsFrGZ1Xtt-PNwbUqA8xDrws1W0oaTjfXEFqrHzoDYyV9lmyjVTH5KhWqUa-flSWpuILt985nrc1sxtSs0wf5f4us56ZfQboQ0ohzFwltwOlL8UOmUVi-QrszMdL0wC8hVmvrSIJTNrjR5yMXEZk0U"
+                  />
+                </div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Andi Pratama</span
+                >
+              </div>
+              <h3
+                class="font-body-md text-body-md text-on-surface mb-2 line-clamp-2 hover:text-primary transition-colors flex-grow"
+              >
+                Saya akan mengembangkan website responsif menggunakan React
+                &amp; Tailwind
+              </h3>
+              <div class="flex items-center gap-1 mb-4">
+                <span
+                  class="material-symbols-outlined text-tertiary-container text-sm icon-fill"
+                  >star</span
+                >
+                <span
+                  class="font-label-sm text-label-sm font-bold text-on-surface"
+                  >5.0</span
+                >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >(85)</span
+                >
+              </div>
+              <div
+                class="pt-3 border-t border-outline-variant flex justify-between items-center mt-auto"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                  >favorite</span
+                >
+                <div class="text-right">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant uppercase text-[10px]"
+                    >Mulai dari</span
+                  >
+                  <div
+                    class="font-headline-sm text-headline-sm text-on-surface"
+                  >
+                    $50
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Gig Card 3 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-shadow group cursor-pointer flex flex-col h-full"
+          >
+            <div
+              class="aspect-video w-full bg-surface-container-high relative overflow-hidden"
+            >
+              <img
+                alt="Writing on Notebook"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                data-alt="A stylized flat-lay composition showing a minimalist notebook, a sleek pen, and a cup of coffee on a pristine white desk. The lighting is high-key, casting very soft shadows and creating a bright, airy feel. The overall aesthetic is clean, modern, and focused on creative productivity."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWAhoXpLG7ACDEc6kCdXLeRR6H0YAMCp0ftTs7fXl8HfjBuAj4iLQDwYIfjYMcHiHTFei5uvTBPog5fea8EH2oYVVyP44s4VXjplLtN3ZJoSVc1UTCQYTPQfVvN6OatbVl9TQnPjvzLpgLki87IbVzbkUpeFhWtMleZ13EOH29p1l75vhRBJEVFWz4vYbfxKELfUhVKPyLpRHnqAfrJhZrNseVSqaQehar4XCYiO_O729SDRb6fy2h-c8xBQhMYQ0cS1LMFAmDZb0"
+              />
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3">
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-variant overflow-hidden"
+                >
+                  <img
+                    alt="Seller Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A smiling, approachable professional headshot of a female copywriter. She has a warm expression and is set against a very light, neutral background. The lighting is bright and even, giving the image a clean, high-quality, and modern professional look."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaWCGMX_YcF5asJUIY5l41vaiAybzJPSx4t62lNVn0DjP9fs_VYrlqh6NidJmHUfHZOcQSL_TstrxdA8GtEKAXiMtpRKhjpSsjqPo5-M6Ndkd_ZHHmvy0PWu5fVc97kNSBqUwNd_NS58BGqxWqVWBl1rpUY8OshcPg5MK1Pmhe0wxK74IG8QUwEHtwSY_eQ59xHVa-pc6PG1mVy8ouq8Rb9OcLr0C5TaOkhE4Iyy5c7_XgfoUceB1uxOoQIFf_kghgiWIVpubdC-k"
+                  />
+                </div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Siti Aminah</span
+                >
+              </div>
+              <h3
+                class="font-body-md text-body-md text-on-surface mb-2 line-clamp-2 hover:text-primary transition-colors flex-grow"
+              >
+                Saya akan menulis artikel SEO friendly untuk blog atau website
+                Anda
+              </h3>
+              <div class="flex items-center gap-1 mb-4">
+                <span
+                  class="material-symbols-outlined text-tertiary-container text-sm icon-fill"
+                  >star</span
+                >
+                <span
+                  class="font-label-sm text-label-sm font-bold text-on-surface"
+                  >4.8</span
+                >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >(210)</span
+                >
+              </div>
+              <div
+                class="pt-3 border-t border-outline-variant flex justify-between items-center mt-auto"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                  >favorite</span
+                >
+                <div class="text-right">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant uppercase text-[10px]"
+                    >Mulai dari</span
+                  >
+                  <div
+                    class="font-headline-sm text-headline-sm text-on-surface"
+                  >
+                    $10
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Gig Card 4 -->
+          <div
+            class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)] transition-shadow group cursor-pointer flex flex-col h-full"
+          >
+            <div
+              class="aspect-video w-full bg-surface-container-high relative overflow-hidden"
+            >
+              <img
+                alt="Digital Marketing Stats"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                data-alt="A modern corporate scene showing an iPad displaying clean, colorful digital marketing analytics charts on a minimalist white table. The lighting is bright and natural, coming from an unseen window, highlighting the crisp UI of the data. The overall tone is professional, clean, and data-driven."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBy7jUJi_yOuptip38zHKmpNQCC2uz-rtJfRAuY1USrO6jPelOtyNG0v8jTvkyYyYSJO3_l0MmeW9K_E9ZGMpV-jFzCHQYY64z3o8OaxHcPVGezZYx1_WQ584HzIlLJvs9Al6u64DP7PXgdAtBo7IVRGU1iuR6H0_Kta0VRpE-fm2cFT3TNBvtAfa-ouVQZ3bKlUyAAHoebnDvxv4lg9StMVEHfEUA6F4qGpNaX7X8l7MzhB2DXGG76t1xohFDnjCjbvKmSvgK2gQs"
+              />
+            </div>
+            <div class="p-4 flex flex-col flex-grow">
+              <div class="flex items-center gap-2 mb-3">
+                <div
+                  class="w-6 h-6 rounded-full bg-surface-variant overflow-hidden"
+                >
+                  <img
+                    alt="Seller Avatar"
+                    class="w-full h-full object-cover"
+                    data-alt="A clear, professional portrait of a male digital marketer. He looks directly at the camera with a slight, confident smile. The background is a solid, light gray, emphasizing a clean, corporate, and minimalist aesthetic. The lighting is sharp and professional."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCxhOO00oQ8-iSK6r2vt9FwOJIrRdZVi7M6AUEmSqn5thZsf44ajw_NmErYCKkuh6Amb_RRMBM_6XseRNB8N8iSDEtpRceeuKB8kl9uwrx5wfwFWKNItDlKvGiqCEhxAu1FmTAusUM54otB4Bm6pYpMW3QCCwp06_3YFPXUkzsGFzkWh1YOB3sQwbW2cLvudHEHVKae-rZwerlFLo5tn0F379pTObXgzEuBt4cRgyuAjC8QXyfocK1_XgFiyLw6pKogndlyGzAddRU"
+                  />
+                </div>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Dedi Kusuma</span
+                >
+              </div>
+              <h3
+                class="font-body-md text-body-md text-on-surface mb-2 line-clamp-2 hover:text-primary transition-colors flex-grow"
+              >
+                Saya akan mengelola kampanye Facebook Ads untuk meningkatkan
+                konversi
+              </h3>
+              <div class="flex items-center gap-1 mb-4">
+                <span
+                  class="material-symbols-outlined text-tertiary-container text-sm icon-fill"
+                  >star</span
+                >
+                <span
+                  class="font-label-sm text-label-sm font-bold text-on-surface"
+                  >4.7</span
+                >
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >(45)</span
+                >
+              </div>
+              <div
+                class="pt-3 border-t border-outline-variant flex justify-between items-center mt-auto"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors cursor-pointer"
+                  >favorite</span
+                >
+                <div class="text-right">
+                  <span
+                    class="font-label-sm text-label-sm text-on-surface-variant uppercase text-[10px]"
+                    >Mulai dari</span
+                  >
+                  <div
+                    class="font-headline-sm text-headline-sm text-on-surface"
+                  >
+                    $25
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 text-center md:hidden">
+          <a
+            class="font-label-md text-label-md px-6 py-3 border border-outline-variant rounded-lg inline-block text-on-surface hover:bg-surface-container-low transition-colors w-full"
+            href="#"
+            >Lihat Semua Jasa</a
+          >
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-surface-container dark:bg-inverse-surface border-t border-outline-variant dark:border-on-surface-variant mt-auto"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center py-8 px-margin-mobile md:px-margin-desktop max-w-max-width mx-auto gap-4"
+      >
+        <div
+          class="font-headline-sm text-headline-sm font-bold text-on-surface"
+        >
+          MahaSewa
+        </div>
+        <div class="flex gap-6">
+          <a
+            class="text-on-secondary-container dark:text-surface-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="text-on-secondary-container dark:text-surface-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="text-on-secondary-container dark:text-surface-variant font-label-sm text-label-sm hover:text-primary dark:hover:text-inverse-primary transition-colors cursor-pointer"
+            href="#"
+            >Support</a
+          >
+        </div>
+        <div
+          class="font-body-sm text-body-sm text-on-secondary-container dark:text-surface-variant"
+        >
+          © 2024 MahaSewa. All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

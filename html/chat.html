@@ -1,0 +1,502 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Chat - MahaSewa</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'inverse-surface': '#2d3133',
+              'on-secondary-fixed-variant': '#38485d',
+              'inverse-primary': '#b4c5ff',
+              'primary-fixed-dim': '#b4c5ff',
+              'on-tertiary-fixed-variant': '#7d2d00',
+              'on-error': '#ffffff',
+              'on-secondary': '#ffffff',
+              'on-surface': '#191c1e',
+              background: '#f7f9fb',
+              'on-primary-container': '#eeefff',
+              'outline-variant': '#c3c6d7',
+              'on-background': '#191c1e',
+              tertiary: '#943700',
+              'surface-container': '#eceef0',
+              'primary-container': '#2563eb',
+              secondary: '#505f76',
+              'on-secondary-container': '#54647a',
+              'on-tertiary-fixed': '#360f00',
+              'secondary-fixed-dim': '#b7c8e1',
+              'surface-dim': '#d8dadc',
+              'surface-bright': '#f7f9fb',
+              'secondary-container': '#d0e1fb',
+              'surface-container-highest': '#e0e3e5',
+              'primary-fixed': '#dbe1ff',
+              'error-container': '#ffdad6',
+              'on-primary-fixed': '#00174b',
+              'on-primary': '#ffffff',
+              'surface-variant': '#e0e3e5',
+              'on-tertiary': '#ffffff',
+              'on-error-container': '#93000a',
+              'surface-container-low': '#f2f4f6',
+              'tertiary-container': '#bc4800',
+              'on-secondary-fixed': '#0b1c30',
+              'tertiary-fixed-dim': '#ffb596',
+              primary: '#004ac6',
+              'inverse-on-surface': '#eff1f3',
+              'secondary-fixed': '#d3e4fe',
+              'surface-container-lowest': '#ffffff',
+              'on-surface-variant': '#434655',
+              'on-tertiary-container': '#ffede6',
+              'surface-tint': '#0053db',
+              surface: '#f7f9fb',
+              'surface-container-high': '#e6e8ea',
+              error: '#ba1a1a',
+              'tertiary-fixed': '#ffdbcd',
+              'on-primary-fixed-variant': '#003ea8',
+              outline: '#737686',
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+            spacing: {
+              'margin-desktop': '64px',
+              gutter: '24px',
+              unit: '8px',
+              'margin-mobile': '16px',
+              'max-width': '1280px',
+            },
+            fontFamily: {
+              'headline-lg-mobile': ['Inter'],
+              'label-md': ['Inter'],
+              'headline-sm': ['Inter'],
+              'body-sm': ['Inter'],
+              'headline-xl': ['Inter'],
+              'headline-lg': ['Inter'],
+              'body-md': ['Inter'],
+              'label-sm': ['Inter'],
+              'body-lg': ['Inter'],
+              'headline-md': ['Inter'],
+            },
+            fontSize: {
+              'headline-lg-mobile': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'label-md': ['14px', { lineHeight: '20px', fontWeight: '500' }],
+              'headline-sm': [
+                '20px',
+                { lineHeight: '28px', fontWeight: '600' },
+              ],
+              'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+              'headline-xl': [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-lg': [
+                '30px',
+                {
+                  lineHeight: '38px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '600',
+                },
+              ],
+              'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'label-sm': [
+                '12px',
+                {
+                  lineHeight: '16px',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: #cbd5e1;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md h-screen flex overflow-hidden"
+  >
+    <!-- TopNavBar (Mobile Only) -->
+    <nav
+      class="md:hidden w-full bg-surface-container-lowest border-b border-outline-variant fixed top-0 z-50 h-16 flex justify-between items-center px-margin-mobile"
+    >
+      <div class="flex items-center gap-3">
+        <button
+          class="p-2 -ml-2 text-on-surface-variant rounded-full active:bg-surface-container-low transition-colors"
+        >
+          <span class="material-symbols-outlined" data-icon="menu">menu</span>
+        </button>
+        <span class="font-headline-sm text-headline-sm font-bold text-primary"
+          >MahaSewa</span
+        >
+      </div>
+      <div class="flex items-center gap-2">
+        <span
+          class="material-symbols-outlined text-on-surface-variant p-2"
+          data-icon="search"
+          >search</span
+        >
+      </div>
+    </nav>
+    <!-- SideNavBar -->
+    <nav
+      class="hidden md:flex flex-col bg-surface-container-low w-64 h-screen border-r border-outline-variant p-4 gap-2 flex-shrink-0 z-40"
+    >
+      <div class="mb-6 px-4">
+        <span
+          class="font-headline-sm text-headline-sm font-bold text-on-surface"
+          >MahaSewa</span
+        >
+      </div>
+      <a
+        class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-all scale-95 duration-75 active:scale-90"
+        href="#"
+      >
+        <span class="material-symbols-outlined" data-icon="dashboard"
+          >dashboard</span
+        >
+        <span class="font-label-md text-label-md">Overview</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-all scale-95 duration-75 active:scale-90"
+        href="#"
+      >
+        <span class="material-symbols-outlined" data-icon="shopping_bag"
+          >shopping_bag</span
+        >
+        <span class="font-label-md text-label-md">My Orders</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-4 py-3 text-primary bg-primary-container bg-opacity-10 rounded-lg hover:bg-surface-container-highest transition-all scale-95 duration-75 active:scale-90"
+        href="#"
+      >
+        <span class="material-symbols-outlined" data-icon="chat">chat</span>
+        <span class="font-label-md text-label-md font-bold">Chat</span>
+      </a>
+      <a
+        class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high rounded-lg hover:bg-surface-container-highest transition-all scale-95 duration-75 active:scale-90"
+        href="#"
+      >
+        <span class="material-symbols-outlined" data-icon="settings"
+          >settings</span
+        >
+        <span class="font-label-md text-label-md">Settings</span>
+      </a>
+    </nav>
+    <!-- Main Chat Container -->
+    <main class="flex-1 flex pt-16 md:pt-0 h-full overflow-hidden">
+      <!-- Contacts Sidebar -->
+      <aside
+        class="w-full md:w-80 border-r border-outline-variant bg-surface-container-lowest flex flex-col h-full hidden sm:flex flex-shrink-0"
+      >
+        <div class="p-4 border-b border-outline-variant">
+          <h2 class="font-headline-sm text-headline-sm text-on-surface mb-4">
+            Messages
+          </h2>
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+              data-icon="search"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-surface-container border border-outline-variant rounded-lg font-body-sm text-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+              placeholder="Search chats..."
+              type="text"
+            />
+          </div>
+        </div>
+        <div class="flex-1 overflow-y-auto custom-scrollbar">
+          <!-- Active Contact -->
+          <div
+            class="flex items-center p-4 border-b border-outline-variant bg-surface cursor-pointer hover:bg-surface-container-low transition-colors"
+          >
+            <div class="relative">
+              <img
+                class="w-12 h-12 rounded-full object-cover border border-outline-variant"
+                data-alt="A professional headshot of a young woman with dark hair, smiling warmly. She is in a bright, modern office setting with soft, natural light illuminating her face. The style is clear, corporate, and trustworthy, fitting a professional digital marketplace avatar."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVVrPVn-qbNuMNtgcVpgE5NrQwD88YFoNH8TyedI_WTqVkTCaqywiyJ0Uj-9ddmCfnpMXmfNSbS30FQmDpa4Msv_7o_GMOI_at6EMGjv62EhX0JW3GbJdMb339wavGXFQZmKazuzsi6KVcyBYThz13KqBDFCtHXlesqUnSF2-KOuR32ur1FoXMLa3KVfZlD6-tiTALWP-KDuRo9zs3U1yXSndt-GMdvzdsX0DaGKteCIkdAVQpxDRqn46YcpmbPvMuae7uWDdlQ4M"
+              />
+              <div
+                class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-container-lowest"
+              ></div>
+            </div>
+            <div class="ml-3 flex-1 overflow-hidden">
+              <div class="flex justify-between items-baseline">
+                <h3
+                  class="font-label-md text-label-md text-on-surface truncate"
+                >
+                  Alex (Designer)
+                </h3>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >10:42 AM</span
+                >
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5"
+              >
+                I've sent over the custom offer for the logo revision.
+              </p>
+            </div>
+          </div>
+          <!-- Other Contact -->
+          <div
+            class="flex items-center p-4 border-b border-outline-variant bg-surface-container-lowest cursor-pointer hover:bg-surface-container-low transition-colors"
+          >
+            <div class="relative">
+              <img
+                class="w-12 h-12 rounded-full object-cover border border-outline-variant"
+                data-alt="A professional headshot of a young man with short hair and a neat beard. He is wearing a simple grey shirt against a plain, light background. The lighting is studio quality, soft and even. The aesthetic is clean, modern, and professional."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBskSc1xYYjsyuhk0H1CmV9168CKjgBY4kFU6Z8qsXy0c1xqpGKyrvZWPKkwPUDQQHilYrZqiyp8gbmCzw7MW1vb7jKCow2ueVbvr4pUhZtVY_rTM5jP5e-TrCPzNggjc1zN4E8uBkh9d1tawirSVX-WpUlFFrn_6wNgyWj2Q11ArEqZ8XSs_PVrD6emBdzqTz1PK5pphJIBDdBTzWj2n7P2UsWA5iztEoiQJrq6eA4ZGGdhDYmrjXonUuyhCPanGVra3fMzseTdeI"
+              />
+              <div
+                class="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-surface-container-lowest"
+              ></div>
+            </div>
+            <div class="ml-3 flex-1 overflow-hidden">
+              <div class="flex justify-between items-baseline">
+                <h3
+                  class="font-label-md text-label-md text-on-surface truncate"
+                >
+                  Sarah
+                </h3>
+                <span
+                  class="font-label-sm text-label-sm text-on-surface-variant"
+                  >Yesterday</span
+                >
+              </div>
+              <p
+                class="font-body-sm text-body-sm text-on-surface-variant truncate mt-0.5"
+              >
+                Thanks! The translation looks great.
+              </p>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <!-- Chat Area -->
+      <section class="flex-1 flex flex-col bg-surface-bright relative">
+        <!-- Chat Header -->
+        <header
+          class="h-16 border-b border-outline-variant bg-surface-container-lowest flex items-center justify-between px-6 flex-shrink-0"
+        >
+          <div class="flex items-center gap-4">
+            <button class="sm:hidden text-on-surface-variant p-2 -ml-2">
+              <span class="material-symbols-outlined" data-icon="arrow_back"
+                >arrow_back</span
+              >
+            </button>
+            <div class="relative">
+              <img
+                class="w-10 h-10 rounded-full object-cover border border-outline-variant"
+                data-alt="A professional headshot of a young woman with dark hair, smiling warmly. She is in a bright, modern office setting with soft, natural light illuminating her face. The style is clear, corporate, and trustworthy, fitting a professional digital marketplace avatar."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvJ45R1OxqrO7kHqYQaswEGxqmIyBknE-z0CH-1c5gg6sPy5dhxMH4JoUanX5HXzz_T8Q_UOU4EbroOn0UO_dO0AYx9PRr7rWvs6XJkAMmgtMsRvgabIz5MQv4A9iZDDup5EqL1KuH5drQvSKrsXk7oq7jhaorpUyXUC76XNaBEkzhzZ0lhQmylftG4VNUJZ7Se_293c9GWpLPYummRGxSB_fSngZs_nnFb8mC_ZoteJqCDTTHivTXCHpDLP9x0vA86v-kVoCcVts"
+              />
+              <div
+                class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-surface-container-lowest"
+              ></div>
+            </div>
+            <div>
+              <h2
+                class="font-label-md text-label-md text-on-surface leading-tight"
+              >
+                Alex (Designer)
+              </h2>
+              <span class="font-label-sm text-label-sm text-green-600"
+                >Online</span
+              >
+            </div>
+          </div>
+          <div class="flex gap-2 text-on-surface-variant">
+            <button
+              class="p-2 hover:bg-surface-container-low rounded-full transition-colors"
+            >
+              <span class="material-symbols-outlined" data-icon="more_vert"
+                >more_vert</span
+              >
+            </button>
+          </div>
+        </header>
+        <!-- Message History -->
+        <div
+          class="flex-1 overflow-y-auto p-6 custom-scrollbar flex flex-col gap-6"
+        >
+          <div class="text-center">
+            <span
+              class="font-label-sm text-label-sm text-on-surface-variant bg-surface-container-low px-3 py-1 rounded-full"
+              >Today, 10:30 AM</span
+            >
+          </div>
+          <!-- Received Message -->
+          <div class="flex items-end gap-2 max-w-[80%]">
+            <img
+              class="w-8 h-8 rounded-full object-cover flex-shrink-0"
+              data-alt="A professional headshot of a young woman with dark hair, smiling warmly. She is in a bright, modern office setting with soft, natural light illuminating her face. The style is clear, corporate, and trustworthy, fitting a professional digital marketplace avatar."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwlpz64hWLZPb0LolMXbtCAPVrQboZHyaVbs_lFIWik9BphTmB23w1ubK1CvXCO3UuTe2-nDBY4zNWPrC9V03oc9xPUGOjx4REBjQSkXz1Wr9edMz87egPRzgCsjkxr__AyIt01Zvk-pwjLypMeDwaabv2tscYstEE7cRF9PM-PgpWIRz5JpuR9_rKfxM-rPTZZZ8EE0bvPDt--4wKCX5uSoQPGAmTe4urPzs7Bcxe-vKOjPmZp1_o5AypWMDd1O7ZNnrS8MidJ6Q"
+            />
+            <div
+              class="bg-surface-container border border-outline-variant rounded-2xl rounded-bl-none p-3 shadow-sm"
+            >
+              <p class="font-body-md text-body-md text-on-surface">
+                Hi there! Are you available to make a few small revisions to the
+                logo design we worked on last week?
+              </p>
+            </div>
+          </div>
+          <!-- Sent Message -->
+          <div class="flex items-end gap-2 max-w-[80%] ml-auto justify-end">
+            <div
+              class="bg-primary text-on-primary rounded-2xl rounded-br-none p-3 shadow-sm"
+            >
+              <p class="font-body-md text-body-md">
+                Hello Alex! Yes, absolutely. I can get started on those
+                revisions today. It will be a small extra charge as discussed.
+              </p>
+            </div>
+          </div>
+          <!-- Received Message -->
+          <div class="flex items-end gap-2 max-w-[80%]">
+            <img
+              class="w-8 h-8 rounded-full object-cover flex-shrink-0"
+              data-alt="A professional headshot of a young woman with dark hair, smiling warmly. She is in a bright, modern office setting with soft, natural light illuminating her face. The style is clear, corporate, and trustworthy, fitting a professional digital marketplace avatar."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAS0DuMiBaNX5eBcbo-3sZy20QJoSvAcgrTS3GeNQDxDH4171lF87nZrIX5Pg1VzGyUwMmmhlfFSQCW7IOBPdW0oU7vfFNmZd-RqSeL7izDHizkqHl9EhS5b75VQSP118VE8nyb8pufyRnAaSoyJmntnmJ5cz4dn2BEK4mi-WGI_Q09B8ov1rpw9HAi6mmTuRJDYxsndvMimD0ePzKobYv1-HOMgGx-K4ZPGqOi1DteMN1-zAg_fX2o5Oy9qWB1SgzfdCD35sZVK0Y"
+            />
+            <div
+              class="bg-surface-container border border-outline-variant rounded-2xl rounded-bl-none p-3 shadow-sm"
+            >
+              <p class="font-body-md text-body-md text-on-surface">
+                Sounds perfect. Please send over the offer when you're ready.
+              </p>
+            </div>
+          </div>
+          <!-- Sent Custom Offer Card -->
+          <div class="flex justify-end ml-auto w-full max-w-sm mt-4">
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl p-5 shadow-sm w-full"
+            >
+              <div class="flex justify-between items-start mb-3">
+                <div class="flex items-center gap-2 text-primary">
+                  <span
+                    class="material-symbols-outlined"
+                    data-icon="description"
+                    >description</span
+                  >
+                  <span class="font-label-md text-label-md font-bold"
+                    >Custom Offer</span
+                  >
+                </div>
+                <span
+                  class="font-headline-sm text-headline-sm text-on-surface font-bold"
+                  >$20</span
+                >
+              </div>
+              <h3 class="font-label-md text-label-md text-on-surface mb-2">
+                Logo Revision
+              </h3>
+              <p class="font-body-sm text-body-sm text-on-surface-variant mb-5">
+                Includes 2 minor revisions to the existing logo design files.
+                Delivery in 24 hours.
+              </p>
+              <button
+                class="w-full bg-primary text-on-primary font-label-md text-label-md py-2.5 rounded-lg hover:bg-primary/90 transition-colors shadow-sm"
+              >
+                Bayar Sekarang
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Message Input Footer -->
+        <footer
+          class="p-4 bg-surface-container-lowest border-t border-outline-variant"
+        >
+          <div class="flex items-end gap-3 max-w-max-width mx-auto">
+            <button
+              class="p-3 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors flex-shrink-0"
+            >
+              <span class="material-symbols-outlined" data-icon="attach_file"
+                >attach_file</span
+              >
+            </button>
+            <div
+              class="flex-1 bg-surface-container rounded-xl border border-outline-variant focus-within:border-primary focus-within:ring-2 focus-within:ring-primary/10 transition-all overflow-hidden flex"
+            >
+              <textarea
+                class="w-full bg-transparent border-none focus:ring-0 resize-none py-3 px-4 font-body-md text-body-md text-on-surface max-h-32 custom-scrollbar"
+                placeholder="Type a message..."
+                rows="1"
+                style="min-height: 48px"
+              ></textarea>
+            </div>
+            <button
+              class="p-3 bg-primary text-on-primary rounded-full hover:bg-primary/90 transition-colors shadow-sm flex-shrink-0"
+            >
+              <span class="material-symbols-outlined" data-icon="send"
+                >send</span
+              >
+            </button>
+          </div>
+        </footer>
+      </section>
+    </main>
+    <script>
+      // Simple auto-resize textarea
+      const textarea = document.querySelector('textarea');
+      textarea.addEventListener('input', function () {
+        this.style.height = 'auto';
+        this.style.height = this.scrollHeight + 'px';
+      });
+    </script>
+  </body>
+</html>

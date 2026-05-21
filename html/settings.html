@@ -1,0 +1,553 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>MahaSewa Admin - Settings</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              'primary-fixed-dim': '#b4c5ff',
+              'on-surface': '#191c1e',
+              'on-primary-fixed-variant': '#003ea8',
+              'secondary-fixed': '#d3e4fe',
+              outline: '#737686',
+              'on-error-container': '#93000a',
+              'surface-container-low': '#f2f4f6',
+              'surface-container': '#eceef0',
+              'surface-dim': '#d8dadc',
+              'tertiary-fixed-dim': '#ffb596',
+              'on-primary-fixed': '#00174b',
+              'on-primary': '#ffffff',
+              tertiary: '#943700',
+              'on-secondary-fixed-variant': '#38485d',
+              'on-primary-container': '#eeefff',
+              'on-tertiary-container': '#ffede6',
+              'surface-container-highest': '#e0e3e5',
+              'on-secondary-container': '#54647a',
+              secondary: '#505f76',
+              'secondary-container': '#d0e1fb',
+              'surface-variant': '#e0e3e5',
+              'inverse-primary': '#b4c5ff',
+              'tertiary-container': '#bc4800',
+              'on-surface-variant': '#434655',
+              'surface-container-high': '#e6e8ea',
+              'on-tertiary-fixed': '#360f00',
+              'surface-bright': '#f7f9fb',
+              'tertiary-fixed': '#ffdbcd',
+              background: '#f7f9fb',
+              'on-tertiary': '#ffffff',
+              'on-background': '#191c1e',
+              error: '#ba1a1a',
+              primary: '#004ac6',
+              'surface-tint': '#0053db',
+              surface: '#f7f9fb',
+              'outline-variant': '#c3c6d7',
+              'on-error': '#ffffff',
+              'secondary-fixed-dim': '#b7c8e1',
+              'inverse-on-surface': '#eff1f3',
+              'primary-fixed': '#dbe1ff',
+              'on-secondary': '#ffffff',
+              'error-container': '#ffdad6',
+              'on-tertiary-fixed-variant': '#7d2d00',
+              'on-secondary-fixed': '#0b1c30',
+              'surface-container-lowest': '#ffffff',
+              'primary-container': '#2563eb',
+              'inverse-surface': '#2d3133',
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+            spacing: {
+              unit: '8px',
+              'max-width': '1280px',
+              'margin-desktop': '64px',
+              'margin-mobile': '16px',
+              gutter: '24px',
+            },
+            fontFamily: {
+              'headline-lg-mobile': ['Inter'],
+              'body-lg': ['Inter'],
+              'label-sm': ['Inter'],
+              'headline-xl': ['Inter'],
+              'headline-lg': ['Inter'],
+              'headline-sm': ['Inter'],
+              'body-sm': ['Inter'],
+              'body-md': ['Inter'],
+              'headline-md': ['Inter'],
+              'label-md': ['Inter'],
+            },
+            fontSize: {
+              'headline-lg-mobile': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+              'label-sm': [
+                '12px',
+                {
+                  lineHeight: '16px',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'headline-xl': [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-lg': [
+                '30px',
+                {
+                  lineHeight: '38px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '600',
+                },
+              ],
+              'headline-sm': [
+                '20px',
+                { lineHeight: '28px', fontWeight: '600' },
+              ],
+              'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+              'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'label-md': ['14px', { lineHeight: '20px', fontWeight: '500' }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex"
+  >
+    <!-- Shared Component: SideNavBar -->
+    <aside
+      class="h-screen w-64 fixed left-0 top-0 bg-surface-container-lowest border-r border-outline-variant z-50 flex flex-col py-8 px-4"
+    >
+      <div class="mb-10 px-4">
+        <h1 class="text-headline-md font-headline-md font-bold text-primary">
+          MahaSewa
+        </h1>
+        <p class="text-label-sm font-label-sm text-on-surface-variant mt-1">
+          Admin Console
+        </p>
+      </div>
+      <nav class="flex-1 space-y-2">
+        <!-- Inactive Tab -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">dashboard</span>
+          <span class="text-label-md font-label-md">Dashboard</span>
+        </a>
+        <!-- Inactive Tab -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]"
+            >receipt_long</span
+          >
+          <span class="text-label-md font-label-md">Order Management</span>
+        </a>
+        <!-- Inactive Tab -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">inventory_2</span>
+          <span class="text-label-md font-label-md">Service Catalog</span>
+        </a>
+        <!-- Inactive Tab -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container-high transition-colors rounded-lg"
+          href="#"
+        >
+          <span class="material-symbols-outlined text-[20px]">chat</span>
+          <span class="text-label-md font-label-md">Message Center</span>
+        </a>
+        <!-- Active Tab -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-primary font-bold bg-secondary-container rounded-lg scale-[0.98] duration-150 transition-transform"
+          href="#"
+        >
+          <span
+            class="material-symbols-outlined text-[20px]"
+            style="font-variation-settings: 'FILL' 1"
+            >settings</span
+          >
+          <span class="text-label-md font-label-md">Settings</span>
+        </a>
+      </nav>
+      <div class="mt-auto px-4 border-t border-outline-variant pt-6">
+        <button
+          class="w-full bg-primary-container text-on-primary rounded-lg py-2.5 px-4 text-label-md font-label-md flex items-center justify-center gap-2 hover:bg-on-primary-fixed-variant transition-colors shadow-sm"
+        >
+          <span class="material-symbols-outlined text-[18px]">upgrade</span>
+          Upgrade Plan
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <div class="flex-1 ml-64 flex flex-col min-h-screen relative">
+      <!-- Shared Component: TopNavBar -->
+      <header
+        class="fixed top-0 right-0 w-[calc(100%-16rem)] z-40 bg-surface-container-lowest/80 backdrop-blur-md border-b border-outline-variant shadow-sm h-16 px-margin-desktop flex justify-between items-center"
+      >
+        <!-- Search Bar (on_left) -->
+        <div class="flex-1 max-w-md">
+          <div
+            class="relative flex items-center w-full focus-within:ring-2 focus-within:ring-primary/20 rounded-lg"
+          >
+            <span
+              class="material-symbols-outlined absolute left-3 text-on-surface-variant"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-lg text-body-md font-body-md text-on-surface focus:outline-none focus:ring-0 placeholder-on-surface-variant/50"
+              placeholder="Search across admin..."
+              type="text"
+            />
+          </div>
+        </div>
+        <!-- Trailing Actions -->
+        <div class="flex items-center gap-6 ml-auto">
+          <div class="flex items-center gap-4">
+            <button
+              class="text-on-surface-variant hover:text-primary transition-colors relative"
+            >
+              <span class="material-symbols-outlined">notifications</span>
+              <span
+                class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full"
+              ></span>
+            </button>
+            <button
+              class="text-on-surface-variant hover:text-primary transition-colors"
+            >
+              <span class="material-symbols-outlined">account_circle</span>
+            </button>
+          </div>
+          <div class="h-6 w-px bg-outline-variant"></div>
+          <button
+            class="bg-primary text-on-primary text-label-md font-label-md px-4 py-2 rounded-lg hover:bg-on-primary-fixed-variant transition-colors flex items-center gap-2"
+          >
+            <span class="material-symbols-outlined text-[18px]">add</span>
+            Buat Jasa Baru
+          </button>
+        </div>
+      </header>
+      <!-- Settings Canvas -->
+      <main class="flex-1 mt-16 p-margin-desktop bg-surface">
+        <div class="max-w-max-width mx-auto">
+          <!-- Page Header -->
+          <div class="mb-10">
+            <h2 class="text-headline-lg font-headline-lg text-on-surface">
+              Account Settings
+            </h2>
+            <p
+              class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-2xl"
+            >
+              Manage your organizational profile, security preferences, and
+              notification channels. These settings affect your primary
+              administrator account.
+            </p>
+          </div>
+          <!-- Settings Layout Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+            <!-- Settings Navigation Menu (Left Sidebar within content) -->
+            <nav class="lg:col-span-3 flex flex-col gap-1 sticky top-24">
+              <a
+                class="px-4 py-2.5 rounded-lg text-label-md font-label-md bg-surface-container-low text-on-surface font-medium flex justify-between items-center"
+                href="#"
+              >
+                Profile Details
+                <span
+                  class="material-symbols-outlined text-[16px] text-on-surface-variant"
+                  >chevron_right</span
+                >
+              </a>
+              <a
+                class="px-4 py-2.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors flex justify-between items-center"
+                href="#"
+              >
+                Security &amp; Access
+              </a>
+              <a
+                class="px-4 py-2.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors flex justify-between items-center"
+                href="#"
+              >
+                Notifications
+              </a>
+              <a
+                class="px-4 py-2.5 rounded-lg text-label-md font-label-md text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-colors flex justify-between items-center"
+                href="#"
+              >
+                Billing &amp; Payments
+              </a>
+            </nav>
+            <!-- Settings Forms / Content Area (Right Side) -->
+            <div class="lg:col-span-9 flex flex-col gap-8">
+              <!-- Bento Card 1: Public Profile -->
+              <section
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm"
+              >
+                <h3
+                  class="text-headline-sm font-headline-sm text-on-surface mb-6 border-b border-outline-variant pb-4"
+                >
+                  Public Profile
+                </h3>
+                <div class="flex flex-col md:flex-row gap-8 items-start mb-8">
+                  <!-- Avatar Upload -->
+                  <div class="flex flex-col items-center gap-4">
+                    <div
+                      class="w-24 h-24 rounded-full overflow-hidden border-2 border-surface-container bg-surface-container-low flex-shrink-0 relative group cursor-pointer"
+                    >
+                      <img
+                        alt="Administrator avatar"
+                        class="w-full h-full object-cover"
+                        data-alt="A professional headshot of an administrator in a modern corporate setting. The lighting is bright and clean, reflecting a high-end, trustworthy light-mode aesthetic. The subject is wearing business casual attire, set against a subtle, out-of-focus modern office background with cool, neutral tones. The image quality is crisp and suitable for a digital avatar."
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuChj8V0olZxtmoRFEoNtyg_t02EOWAlxtZK8LiWfOQtd5xxK-pGrHlQ7bluj9Zi4AybhWVHPTkF7pnGXt1E4TnxvgsPhgweCt-sZ_hwfkCI60zra-c_OKH7vy0xTZuuWBEZhUyhBXji5WSOGLZ5m9rbEU3PIUBVifnNzq7PawCxuT_tD2Q01Q5W8cu4CXROsxh6nKN64FPEDwUeeyyR_9QfxCJjOmAE52ZLu25H36iiKYriJoSDa03sjxrNSNm4XcwvPB9gy6rt57Y"
+                      />
+                      <div
+                        class="absolute inset-0 bg-on-surface/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                      >
+                        <span class="material-symbols-outlined text-on-primary"
+                          >photo_camera</span
+                        >
+                      </div>
+                    </div>
+                    <button
+                      class="text-label-sm font-label-sm text-primary hover:text-on-primary-fixed-variant border border-outline-variant rounded px-3 py-1.5 transition-colors"
+                    >
+                      Change Avatar
+                    </button>
+                  </div>
+                  <!-- Core Info Form -->
+                  <div
+                    class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6 w-full"
+                  >
+                    <div class="space-y-2 md:col-span-2">
+                      <label
+                        class="text-label-sm font-label-sm text-on-surface-variant block"
+                        >Full Name</label
+                      >
+                      <input
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+                        type="text"
+                        value="Arjuna Wijaya"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label
+                        class="text-label-sm font-label-sm text-on-surface-variant block"
+                        >Email Address</label
+                      >
+                      <input
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+                        type="email"
+                        value="arjuna.w@mahasewa.id"
+                      />
+                    </div>
+                    <div class="space-y-2">
+                      <label
+                        class="text-label-sm font-label-sm text-on-surface-variant block"
+                        >System Role</label
+                      >
+                      <input
+                        class="w-full bg-surface-container-low border border-outline-variant/50 rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface-variant cursor-not-allowed"
+                        disabled=""
+                        type="text"
+                        value="Super Administrator"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex justify-end pt-4 border-t border-outline-variant"
+                >
+                  <button
+                    class="bg-primary text-on-primary rounded-lg px-6 py-2.5 font-label-md text-label-md hover:bg-on-primary-fixed-variant transition-colors shadow-sm"
+                  >
+                    Save Changes
+                  </button>
+                </div>
+              </section>
+              <!-- Bento Card 2: Security Mini-Form -->
+              <section
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm"
+              >
+                <div
+                  class="flex items-center justify-between mb-6 border-b border-outline-variant pb-4"
+                >
+                  <div>
+                    <h3
+                      class="text-headline-sm font-headline-sm text-on-surface"
+                    >
+                      Password &amp; Security
+                    </h3>
+                    <p
+                      class="text-body-sm font-body-sm text-on-surface-variant mt-1"
+                    >
+                      Ensure your account is using a long, random password to
+                      stay secure.
+                    </p>
+                  </div>
+                  <span
+                    class="material-symbols-outlined text-outline text-[32px] font-light"
+                    >lock</span
+                  >
+                </div>
+                <div class="max-w-md space-y-5">
+                  <div class="space-y-2">
+                    <label
+                      class="text-label-sm font-label-sm text-on-surface-variant block"
+                      >Current Password</label
+                    >
+                    <div class="relative">
+                      <input
+                        class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg pl-4 pr-10 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+                        placeholder="••••••••••••"
+                        type="password"
+                      />
+                      <span
+                        class="material-symbols-outlined absolute right-3 top-2.5 text-on-surface-variant cursor-pointer text-[20px]"
+                        >visibility_off</span
+                      >
+                    </div>
+                  </div>
+                  <div class="space-y-2">
+                    <label
+                      class="text-label-sm font-label-sm text-on-surface-variant block"
+                      >New Password</label
+                    >
+                    <input
+                      class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-4 py-2.5 text-body-md font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+                      type="password"
+                    />
+                  </div>
+                  <button
+                    class="border border-outline-variant text-on-surface rounded-lg px-5 py-2 font-label-md text-label-md hover:bg-surface-container-low transition-colors mt-2"
+                  >
+                    Update Password
+                  </button>
+                </div>
+              </section>
+              <!-- Bento Card 3: Notification Preferences -->
+              <section
+                class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm"
+              >
+                <h3
+                  class="text-headline-sm font-headline-sm text-on-surface mb-6 border-b border-outline-variant pb-4"
+                >
+                  Notification Preferences
+                </h3>
+                <div class="space-y-6">
+                  <!-- Toggle Row 1 -->
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4
+                        class="text-body-md font-body-md font-medium text-on-surface"
+                      >
+                        Email Notifications
+                      </h4>
+                      <p
+                        class="text-body-sm font-body-sm text-on-surface-variant mt-0.5"
+                      >
+                        Receive daily summaries and critical alerts via email.
+                      </p>
+                    </div>
+                    <!-- Custom Toggle Switch -->
+                    <label
+                      class="relative inline-flex items-center cursor-pointer"
+                    >
+                      <input
+                        checked=""
+                        class="sr-only peer"
+                        type="checkbox"
+                        value=""
+                      />
+                      <div
+                        class="w-11 h-6 bg-surface-container-high peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+                      ></div>
+                    </label>
+                  </div>
+                  <div class="h-px bg-outline-variant/50 w-full"></div>
+                  <!-- Toggle Row 2 -->
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <h4
+                        class="text-body-md font-body-md font-medium text-on-surface"
+                      >
+                        Push Notifications
+                      </h4>
+                      <p
+                        class="text-body-sm font-body-sm text-on-surface-variant mt-0.5"
+                      >
+                        Get real-time alerts for new orders and messages on this
+                        device.
+                      </p>
+                    </div>
+                    <!-- Custom Toggle Switch -->
+                    <label
+                      class="relative inline-flex items-center cursor-pointer"
+                    >
+                      <input class="sr-only peer" type="checkbox" value="" />
+                      <div
+                        class="w-11 h-6 bg-surface-container-high peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-outline-variant after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+                      ></div>
+                    </label>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

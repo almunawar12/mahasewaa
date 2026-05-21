@@ -1,0 +1,707 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard Overview - MahaSewa Admin</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: '#004ac6',
+              'surface-container-high': '#e6e8ea',
+              'on-primary-container': '#eeefff',
+              'on-background': '#191c1e',
+              'tertiary-fixed': '#ffdbcd',
+              'on-primary-fixed-variant': '#003ea8',
+              tertiary: '#943700',
+              'primary-container': '#2563eb',
+              'on-surface-variant': '#434655',
+              'on-primary': '#ffffff',
+              'inverse-surface': '#2d3133',
+              error: '#ba1a1a',
+              surface: '#f7f9fb',
+              'surface-tint': '#0053db',
+              'surface-variant': '#e0e3e5',
+              'on-secondary-fixed-variant': '#38485d',
+              'on-tertiary-fixed-variant': '#7d2d00',
+              'on-error': '#ffffff',
+              'primary-fixed': '#dbe1ff',
+              'on-secondary': '#ffffff',
+              'secondary-container': '#d0e1fb',
+              secondary: '#505f76',
+              'inverse-on-surface': '#eff1f3',
+              'on-primary-fixed': '#00174b',
+              'primary-fixed-dim': '#b4c5ff',
+              'outline-variant': '#c3c6d7',
+              'error-container': '#ffdad6',
+              background: '#f7f9fb',
+              'surface-container': '#eceef0',
+              'surface-dim': '#d8dadc',
+              'on-secondary-fixed': '#0b1c30',
+              'surface-container-highest': '#e0e3e5',
+              outline: '#737686',
+              'tertiary-fixed-dim': '#ffb596',
+              'on-tertiary-fixed': '#360f00',
+              'inverse-primary': '#b4c5ff',
+              'secondary-fixed': '#d3e4fe',
+              'on-surface': '#191c1e',
+              'surface-container-low': '#f2f4f6',
+              'on-tertiary': '#ffffff',
+              'on-error-container': '#93000a',
+              'surface-bright': '#f7f9fb',
+              'secondary-fixed-dim': '#b7c8e1',
+              'on-secondary-container': '#54647a',
+              'surface-container-lowest': '#ffffff',
+              'tertiary-container': '#bc4800',
+              'on-tertiary-container': '#ffede6',
+            },
+            borderRadius: {
+              DEFAULT: '0.25rem',
+              lg: '0.5rem',
+              xl: '0.75rem',
+              full: '9999px',
+            },
+            spacing: {
+              unit: '8px',
+              'max-width': '1280px',
+              'margin-mobile': '16px',
+              gutter: '24px',
+              'margin-desktop': '64px',
+            },
+            fontFamily: {
+              'headline-md': ['Inter'],
+              'headline-lg-mobile': ['Inter'],
+              'headline-xl': ['Inter'],
+              'headline-lg': ['Inter'],
+              'body-lg': ['Inter'],
+              'label-md': ['Inter'],
+              'label-sm': ['Inter'],
+              'headline-sm': ['Inter'],
+              'body-md': ['Inter'],
+              'body-sm': ['Inter'],
+            },
+            fontSize: {
+              'headline-md': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'headline-lg-mobile': [
+                '24px',
+                {
+                  lineHeight: '32px',
+                  letterSpacing: '-0.01em',
+                  fontWeight: '600',
+                },
+              ],
+              'headline-xl': [
+                '36px',
+                {
+                  lineHeight: '44px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '700',
+                },
+              ],
+              'headline-lg': [
+                '30px',
+                {
+                  lineHeight: '38px',
+                  letterSpacing: '-0.02em',
+                  fontWeight: '600',
+                },
+              ],
+              'body-lg': ['18px', { lineHeight: '28px', fontWeight: '400' }],
+              'label-md': ['14px', { lineHeight: '20px', fontWeight: '500' }],
+              'label-sm': [
+                '12px',
+                {
+                  lineHeight: '16px',
+                  letterSpacing: '0.05em',
+                  fontWeight: '500',
+                },
+              ],
+              'headline-sm': [
+                '20px',
+                { lineHeight: '28px', fontWeight: '600' },
+              ],
+              'body-md': ['16px', { lineHeight: '24px', fontWeight: '400' }],
+              'body-sm': ['14px', { lineHeight: '20px', fontWeight: '400' }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface h-screen flex overflow-hidden">
+    <!-- SideNavBar -->
+    <nav
+      class="fixed left-0 top-0 h-screen w-64 flex flex-col py-6 z-50 bg-surface-container-low dark:bg-surface-container-lowest border-r border-outline-variant dark:border-outline"
+    >
+      <div class="px-6 mb-8 flex flex-col items-start">
+        <span
+          class="text-headline-md font-headline-md font-black text-primary dark:text-primary-fixed-dim"
+          >MahaSewa</span
+        >
+        <span
+          class="text-label-sm font-label-sm text-on-surface-variant mt-1 uppercase tracking-wider"
+          >Admin Panel</span
+        >
+      </div>
+      <ul class="flex-1 overflow-y-auto px-2 space-y-2">
+        <li>
+          <a
+            class="flex items-center gap-3 bg-secondary-container dark:bg-on-secondary-fixed-variant text-on-secondary-container dark:text-on-primary-container rounded-lg px-4 py-2 mx-2 text-label-md font-label-md hover:bg-surface-container-highest transition-all duration-75"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="dashboard"
+              >dashboard</span
+            >
+            Dashboard
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 text-label-md font-label-md hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-lg transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="shopping_cart"
+              >shopping_cart</span
+            >
+            Order Management
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 text-label-md font-label-md hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-lg transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="category"
+              >category</span
+            >
+            Service Catalog
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 text-label-md font-label-md hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-lg transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="mail">mail</span>
+            Message Center
+          </a>
+        </li>
+        <li>
+          <a
+            class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 text-label-md font-label-md hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-lg transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined" data-icon="settings"
+              >settings</span
+            >
+            Settings
+          </a>
+        </li>
+      </ul>
+      <div class="px-2 mt-auto border-t border-outline-variant pt-4">
+        <a
+          class="flex items-center gap-3 text-on-surface-variant dark:text-surface-variant px-4 py-2 mx-2 text-label-md font-label-md hover:bg-surface-container-highest dark:hover:bg-surface-container-high rounded-lg transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined" data-icon="account_circle"
+            >account_circle</span
+          >
+          Admin Profile
+        </a>
+      </div>
+    </nav>
+    <!-- Main Content Area -->
+    <main class="flex-1 ml-64 flex flex-col h-screen overflow-hidden">
+      <!-- Top Header -->
+      <header
+        class="flex justify-between items-center w-full px-8 py-4 bg-surface-container-lowest border-b border-outline-variant shrink-0"
+      >
+        <h1 class="text-headline-sm font-headline-sm font-bold text-on-surface">
+          Dashboard Overview
+        </h1>
+        <div class="flex items-center gap-6">
+          <!-- Search -->
+          <div class="relative w-64">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+              data-icon="search"
+              style="font-size: 20px"
+              >search</span
+            >
+            <input
+              class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded-lg text-body-sm font-body-sm focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all"
+              placeholder="Search orders, clients..."
+              type="text"
+            />
+          </div>
+          <!-- Notifications -->
+          <button
+            class="relative p-2 text-on-surface-variant hover:bg-surface-container-low rounded-full transition-colors"
+          >
+            <span class="material-symbols-outlined" data-icon="notifications"
+              >notifications</span
+            >
+            <span
+              class="absolute top-1.5 right-1.5 w-2 h-2 bg-error rounded-full ring-2 ring-surface-container-lowest"
+            ></span>
+          </button>
+          <!-- Action Button -->
+          <button
+            class="flex items-center gap-2 bg-primary-container text-on-primary px-4 py-2 rounded-lg text-label-md font-label-md hover:bg-primary transition-colors shadow-sm"
+          >
+            <span
+              class="material-symbols-outlined"
+              data-icon="add"
+              style="font-size: 18px"
+              >add</span
+            >
+            Buat Jasa Baru
+          </button>
+        </div>
+      </header>
+      <!-- Scrollable Content -->
+      <div class="flex-1 overflow-y-auto p-8">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-12 gap-8">
+          <!-- Metrics Row -->
+          <div class="col-span-12 grid grid-cols-4 gap-6 mb-8">
+            <!-- Metric 1 -->
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <span
+                  class="text-label-md font-label-md text-on-surface-variant"
+                  >Total Pendapatan</span
+                >
+                <div
+                  class="p-2 bg-secondary-container/50 text-primary-container rounded-lg"
+                >
+                  <span class="material-symbols-outlined" data-icon="payments"
+                    >payments</span
+                  >
+                </div>
+              </div>
+              <h3
+                class="text-headline-md font-headline-md font-bold text-on-surface mb-2"
+              >
+                Rp 15.000.000
+              </h3>
+              <div class="flex items-center gap-2 text-label-sm font-label-sm">
+                <span
+                  class="text-emerald-600 flex items-center bg-emerald-50 px-1.5 py-0.5 rounded"
+                >
+                  <span
+                    class="material-symbols-outlined"
+                    data-icon="trending_up"
+                    style="font-size: 14px"
+                    >trending_up</span
+                  >
+                  +12%
+                </span>
+                <span class="text-on-surface-variant">from last month</span>
+              </div>
+            </div>
+            <!-- Metric 2 -->
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <span
+                  class="text-label-md font-label-md text-on-surface-variant"
+                  >Pesanan Aktif</span
+                >
+                <div
+                  class="p-2 bg-secondary-container/50 text-primary-container rounded-lg"
+                >
+                  <span
+                    class="material-symbols-outlined"
+                    data-icon="shopping_bag"
+                    >shopping_bag</span
+                  >
+                </div>
+              </div>
+              <h3
+                class="text-headline-md font-headline-md font-bold text-on-surface mb-2"
+              >
+                24
+              </h3>
+              <div
+                class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant"
+              >
+                <span>Currently in progress</span>
+              </div>
+            </div>
+            <!-- Metric 3 -->
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <span
+                  class="text-label-md font-label-md text-on-surface-variant"
+                  >Menunggu Review</span
+                >
+                <div class="p-2 bg-error-container/50 text-error rounded-lg">
+                  <span
+                    class="material-symbols-outlined"
+                    data-icon="pending_actions"
+                    >pending_actions</span
+                  >
+                </div>
+              </div>
+              <div class="flex items-end gap-3 mb-2">
+                <h3
+                  class="text-headline-md font-headline-md font-bold text-on-surface"
+                >
+                  8
+                </h3>
+                <span
+                  class="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full mb-1"
+                  >Needs Action</span
+                >
+              </div>
+              <div
+                class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant"
+              >
+                <span>Awaiting your approval</span>
+              </div>
+            </div>
+            <!-- Metric 4 -->
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div class="flex justify-between items-start mb-4">
+                <span
+                  class="text-label-md font-label-md text-on-surface-variant"
+                  >Total Klien</span
+                >
+                <div
+                  class="p-2 bg-secondary-container/50 text-primary-container rounded-lg"
+                >
+                  <span class="material-symbols-outlined" data-icon="groups"
+                    >groups</span
+                  >
+                </div>
+              </div>
+              <h3
+                class="text-headline-md font-headline-md font-bold text-on-surface mb-2"
+              >
+                156
+              </h3>
+              <div
+                class="flex items-center gap-2 text-label-sm font-label-sm text-on-surface-variant"
+              >
+                <span>Registered on platform</span>
+              </div>
+            </div>
+          </div>
+          <!-- Main Section: Table + Chats -->
+          <div class="col-span-8 flex flex-col gap-6">
+            <!-- Order Table -->
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden"
+            >
+              <div
+                class="p-6 border-b border-outline-variant flex justify-between items-center"
+              >
+                <h2
+                  class="text-headline-sm font-headline-sm font-semibold text-on-surface"
+                >
+                  Recent Orders
+                </h2>
+                <button
+                  class="text-primary text-label-sm font-label-sm font-medium hover:underline"
+                >
+                  View All
+                </button>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                  <thead>
+                    <tr
+                      class="bg-surface-container-low text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider border-b border-outline-variant"
+                    >
+                      <th class="px-6 py-4 font-medium">ID Pesanan</th>
+                      <th class="px-6 py-4 font-medium">Nama Klien</th>
+                      <th class="px-6 py-4 font-medium">Layanan</th>
+                      <th class="px-6 py-4 font-medium">Tenggat Waktu</th>
+                      <th class="px-6 py-4 font-medium">Status</th>
+                      <th class="px-6 py-4 font-medium text-right">Aksi</th>
+                    </tr>
+                  </thead>
+                  <tbody
+                    class="text-body-sm font-body-sm text-on-surface divide-y divide-outline-variant"
+                  >
+                    <tr
+                      class="hover:bg-surface-container-low/50 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-medium">#ORD-101</td>
+                      <td class="px-6 py-4">Andi Pratama</td>
+                      <td class="px-6 py-4 text-on-surface-variant">
+                        Web Development
+                      </td>
+                      <td class="px-6 py-4">25 Okt 2024</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-blue-50 text-blue-700 border border-blue-200"
+                        >
+                          In Progress
+                        </span>
+                      </td>
+                      <td class="px-6 py-4 text-right space-x-2">
+                        <button
+                          class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+                          title="View"
+                        >
+                          <span
+                            class="material-symbols-outlined"
+                            data-icon="visibility"
+                            style="font-size: 18px"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+                          title="Upload Delivery"
+                        >
+                          <span
+                            class="material-symbols-outlined"
+                            data-icon="upload"
+                            style="font-size: 18px"
+                            >upload</span
+                          >
+                        </button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-surface-container-low/50 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-medium">#ORD-102</td>
+                      <td class="px-6 py-4">Siti Aminah</td>
+                      <td class="px-6 py-4 text-on-surface-variant">
+                        Logo Design
+                      </td>
+                      <td class="px-6 py-4">26 Okt 2024</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-purple-50 text-purple-700 border border-purple-200"
+                        >
+                          Review Requested
+                        </span>
+                      </td>
+                      <td class="px-6 py-4 text-right space-x-2">
+                        <button
+                          class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+                          title="View"
+                        >
+                          <span
+                            class="material-symbols-outlined"
+                            data-icon="visibility"
+                            style="font-size: 18px"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+                          title="Upload Delivery"
+                        >
+                          <span
+                            class="material-symbols-outlined"
+                            data-icon="upload"
+                            style="font-size: 18px"
+                            >upload</span
+                          >
+                        </button>
+                      </td>
+                    </tr>
+                    <tr
+                      class="hover:bg-surface-container-low/50 transition-colors"
+                    >
+                      <td class="px-6 py-4 font-medium">#ORD-103</td>
+                      <td class="px-6 py-4">Budi Santoso</td>
+                      <td class="px-6 py-4 text-on-surface-variant">
+                        SEO Writing
+                      </td>
+                      <td class="px-6 py-4">27 Okt 2024</td>
+                      <td class="px-6 py-4">
+                        <span
+                          class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[12px] font-medium bg-emerald-50 text-emerald-700 border border-emerald-200"
+                        >
+                          Completed
+                        </span>
+                      </td>
+                      <td class="px-6 py-4 text-right space-x-2">
+                        <button
+                          class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+                          title="View"
+                        >
+                          <span
+                            class="material-symbols-outlined"
+                            data-icon="visibility"
+                            style="font-size: 18px"
+                            >visibility</span
+                          >
+                        </button>
+                        <button
+                          class="p-1 text-on-surface-variant hover:text-primary transition-colors"
+                          title="Upload Delivery"
+                        >
+                          <span
+                            class="material-symbols-outlined"
+                            data-icon="upload"
+                            style="font-size: 18px"
+                            >upload</span
+                          >
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <!-- Right Sidebar: Recent Chats -->
+          <div class="col-span-4 flex flex-col gap-6">
+            <div
+              class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm p-6"
+            >
+              <div class="flex justify-between items-center mb-6">
+                <h2
+                  class="text-headline-sm font-headline-sm font-semibold text-on-surface"
+                >
+                  Recent Chats
+                </h2>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant"
+                  data-icon="forum"
+                  >forum</span
+                >
+              </div>
+              <div class="space-y-4">
+                <!-- Chat 1 -->
+                <div
+                  class="flex gap-4 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer border border-transparent hover:border-outline-variant"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shrink-0"
+                  >
+                    <span class="text-label-md font-bold">AP</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline mb-1">
+                      <h4
+                        class="text-label-md font-label-md font-semibold text-on-surface truncate"
+                      >
+                        Andi Pratama
+                      </h4>
+                      <span class="text-[11px] text-on-surface-variant shrink-0"
+                        >2 mins ago</span
+                      >
+                    </div>
+                    <p
+                      class="text-body-sm font-body-sm text-on-surface-variant truncate"
+                    >
+                      Terima kasih atas revisinya, saya sudah cek...
+                    </p>
+                  </div>
+                </div>
+                <!-- Chat 2 -->
+                <div
+                  class="flex gap-4 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer border border-transparent hover:border-outline-variant"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-tertiary-container flex items-center justify-center text-on-tertiary-container shrink-0"
+                  >
+                    <span class="text-label-md font-bold">SA</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline mb-1">
+                      <h4
+                        class="text-label-md font-label-md font-semibold text-on-surface truncate"
+                      >
+                        Siti Aminah
+                      </h4>
+                      <span class="text-[11px] text-on-surface-variant shrink-0"
+                        >1 hour ago</span
+                      >
+                    </div>
+                    <p
+                      class="text-body-sm font-body-sm text-on-surface-variant font-medium text-on-surface"
+                    >
+                      Apakah bisa ditambahkan warna biru pada l...
+                    </p>
+                  </div>
+                  <div
+                    class="w-2 h-2 bg-primary rounded-full self-center mt-4"
+                  ></div>
+                </div>
+                <!-- Chat 3 -->
+                <div
+                  class="flex gap-4 p-3 hover:bg-surface-container-low rounded-lg transition-colors cursor-pointer border border-transparent hover:border-outline-variant"
+                >
+                  <div
+                    class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary shrink-0"
+                  >
+                    <span class="text-label-md font-bold">BS</span>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline mb-1">
+                      <h4
+                        class="text-label-md font-label-md font-semibold text-on-surface truncate"
+                      >
+                        Budi Santoso
+                      </h4>
+                      <span class="text-[11px] text-on-surface-variant shrink-0"
+                        >Yesterday</span
+                      >
+                    </div>
+                    <p
+                      class="text-body-sm font-body-sm text-on-surface-variant truncate"
+                    >
+                      Invoice untuk bulan ini sudah saya bayar...
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <button
+                class="w-full mt-6 py-2 border border-outline-variant rounded-lg text-label-md font-label-md text-on-surface hover:bg-surface-container-low transition-colors"
+              >
+                View All Messages
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
