@@ -18,6 +18,11 @@ export async function Navbar() {
           </Link>
           {session?.user ? (
             <>
+              {session.user.role === "ADMIN" && (
+                <Link href="/admin">
+                  <Button variant="ghost" size="sm">Admin</Button>
+                </Link>
+              )}
               <Link href="/dashboard">
                 <Button variant="ghost" size="sm">Dashboard</Button>
               </Link>
