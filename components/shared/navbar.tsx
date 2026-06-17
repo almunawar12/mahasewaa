@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { auth, signOut } from "@/auth";
 import { SearchBar } from "@/components/features/search-bar";
+import { NavbarClient } from "@/components/shared/navbar-client";
 
 export async function Navbar() {
   const session = await auth();
@@ -74,10 +75,7 @@ export async function Navbar() {
           )}
         </nav>
 
-        {/* Mobile hamburger — wired in Task 9 */}
-        <button className="md:hidden text-[#191c1e]" aria-label="Menu">
-          <span className="material-symbols-outlined">menu</span>
-        </button>
+        <NavbarClient session={session} signOutAction={handleSignOut} />
       </div>
     </header>
   );
