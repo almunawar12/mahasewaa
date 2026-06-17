@@ -13,6 +13,7 @@ interface DeliverableFormProps {
 
 export function DeliverableForm({ orderId, currentUrl, action }: DeliverableFormProps) {
   const [deliveryFileUrl, setDeliveryFileUrl] = useState(currentUrl ?? "");
+  const [isUploaded, setIsUploaded] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -40,7 +41,10 @@ export function DeliverableForm({ orderId, currentUrl, action }: DeliverableForm
         path={`deliverables/${orderId}`}
         accept="image/*,application/pdf,.zip,.doc,.docx"
         label="Upload File Deliverable"
-        onUpload={(url) => setDeliveryFileUrl(url)}
+        onUpload={(url) => {
+          setDeliveryFileUrl(url);
+          setIsUploaded(true);
+        }}
       />
       {currentUrl && (
         <p className="text-xs text-slate-500 break-all">
@@ -50,7 +54,7 @@ export function DeliverableForm({ orderId, currentUrl, action }: DeliverableForm
           </a>
         </p>
       )}
-      <Button type="submit" disabled={!deliveryFileUrl || submitting} className="w-full" size="sm">
+      <Button type="submit" disabled={!isUploaded || submitting} className="w-full" size="sm">
         {submitting ? "Mengirim…" : "Submit & Set REVIEW"}
       </Button>
     </form>
