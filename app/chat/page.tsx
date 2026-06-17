@@ -15,7 +15,7 @@ export default async function ChatListPage() {
       where: { OR: [{ clientId: userId }, { adminId: userId }] },
       orderBy: { createdAt: "desc" },
       include: {
-        service: { select: { title: true } },
+        service: { select: { title: true, slug: true } },
         messages: { orderBy: { createdAt: "desc" }, take: 1 },
       },
     })
@@ -32,7 +32,15 @@ export default async function ChatListPage() {
           </CardHeader>
           <CardContent className="p-0">
             {rooms.length === 0 ? (
-              <p className="px-6 py-8 text-center text-sm text-slate-500">Belum ada percakapan.</p>
+              <div className="px-6 py-8 text-center">
+                <p className="mb-3 text-sm text-slate-500">Belum ada percakapan.</p>
+                <Link
+                  href="/services"
+                  className="text-sm font-medium text-[#004ac6] underline"
+                >
+                  Mulai dari halaman jasa
+                </Link>
+              </div>
             ) : (
               rooms.map((r) => (
                 <Link
