@@ -2,14 +2,13 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { formatIDR } from "@/lib/utils";
 import { updateOrderStatusAction, setDeliverableAction } from "../actions";
+import { DeliverableForm } from "./_deliverable-form";
 
 export const metadata = { title: "Admin · Detail Order" };
 
-const STATUSES = ["PENDING", "IN_PROGRESS", "REVIEW", "COMPLETED", "CANCELLED"];
+const STATUSES = ["PENDING", "IN_PROGRESS", "REVIEW", "COMPLETED", "CANCELLED"] as const;
 
 export default async function AdminOrderDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -53,12 +52,20 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
               <p className="mb-1 text-slate-500">Brief</p>
               <p className="whitespace-pre-wrap rounded-md bg-slate-50 p-3">{order.briefNotes ?? "—"}</p>
             </div>
+            {order.briefFileUrl && (
+              <div>
+                <p className="mb-1 text-slate-500">File Brief</p>
+                <a href={order.briefFileUrl} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                  Lihat Lampiran
+                </a>
+              </div>
+            )}
             {order.deliveryFileUrl && (
               <Row
                 label="Deliverable"
                 value={
                   <a href={order.deliveryFileUrl} target="_blank" className="text-emerald-600 hover:underline">
-                    {order.deliveryFileUrl}
+                    Download
                   </a>
                 }
               />
@@ -97,20 +104,11 @@ export default async function AdminOrderDetailPage({ params }: { params: Promise
               <CardTitle>Upload Deliverable</CardTitle>
             </CardHeader>
             <CardContent>
-              <form action={deliverableAction} className="space-y-2">
-                <Label htmlFor="deliveryFileUrl">URL hasil pengerjaan</Label>
-                <Input
-                  id="deliveryFileUrl"
-                  name="deliveryFileUrl"
-                  type="url"
-                  placeholder="https://…"
-                  defaultValue={order.deliveryFileUrl ?? ""}
-                  required
-                />
-                <Button type="submit" className="w-full" size="sm">
-                  Submit & Set REVIEW
-                </Button>
-              </form>
+              <DeliverableForm
+                orderId={order.id}
+                currentUrl={order.deliveryFileUrl}
+                action={deliverableAction}
+              />
             </CardContent>
           </Card>
         </div>
