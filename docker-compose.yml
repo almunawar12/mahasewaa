@@ -1,0 +1,56 @@
+# Docker Compose for MahaSewa.
+# Works for local testing AND Dokploy "Docker Compose" deploys.
+#
+# In Dokploy: set env vars in the UI (Environment tab) — they are injected here.
+# Dokploy's Traefik handles HTTPS/domains, so no host port mapping is required
+# (uncomment `ports` only for local testing).
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: "3888"
+      # Runtime DB connection (pooled). For Supabase use the 6543 pooler URL.
+      DATABASE_URL: ${DATABASE_URL}
+      # Migration/direct connection (5432). Used by `prisma migrate deploy`.
+      DIRECT_URL: ${DIRECT_URL}
+      # NextAuth v5
+      AUTH_SECRET: ${AUTH_SECRET}
+      AUTH_TRUST_HOST: "true"
+      # Supabase storage (public — baked into client bundle at build if needed)
+      NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
+      NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
+      # Set false if migrations are run outside the container.
+      RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
+    # Local-only: expose to host. Dokploy uses Traefik instead.
+    # ports:
+    #   - "3888:3888"
+
+    # --- Optional: bundle Postgres instead of Supabase ---
+    # Uncomment the `db` service below + depends_on, and point
+    # DATABASE_URL/DIRECT_URL at: postgresql://postgres:postgres@db:5432/mahasewa
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+
+  # db:
+  #   image: postgres:17-alpine
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: mahasewa
+  #   volumes:
+  #     - pgdata:/var/lib/postgresql/data
+  #   healthcheck:
+  #     test: ["CMD-SHELL", "pg_isready -U postgres"]
+  #     interval: 5s
+  #     timeout: 5s
+  #     retries: 10
+
+# volumes:
+#   pgdata:
