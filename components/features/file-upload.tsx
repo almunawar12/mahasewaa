@@ -42,8 +42,14 @@ export function FileUpload({
     }
 
     const { data } = supabase.storage.from(bucket).getPublicUrl(filePath);
+    if (!data.publicUrl) {
+      setError("Gagal mendapatkan URL file. Coba lagi.");
+      setUploading(false);
+      return;
+    }
     setFileName(file.name);
     setUploading(false);
+    if (inputRef.current) inputRef.current.value = "";
     onUpload(data.publicUrl);
   }
 
