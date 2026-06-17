@@ -1,11 +1,11 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { isRedirectError } from "next/dist/client/components/redirect-error";
 import bcrypt from "bcryptjs";
 import { auth, signIn } from "@/auth";
 import { prisma } from "@/lib/prisma";
 import { registerSchema } from "@/lib/validations/auth";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+import { RegisterForm } from "./_register-form";
 
 export const metadata = { title: "Daftar" };
 
@@ -21,35 +21,44 @@ export default async function RegisterPage() {
   const session = await auth();
   if (session?.user) redirect("/dashboard");
 
-  async function register(formData: FormData) {
+  async function registerAction(
+    _prev: string | null,
+    formData: FormData,
+  ): Promise<string | null> {
     "use server";
-    const parsed = registerSchema.safeParse({
-      email: formData.get("email"),
-      password: formData.get("password"),
-      fullName: formData.get("fullName"),
-    });
-    if (!parsed.success) {
-      throw new Error(parsed.error.issues[0]?.message ?? "Input tidak valid");
-    }
+    try {
+      const parsed = registerSchema.safeParse({
+        email: formData.get("email"),
+        password: formData.get("password"),
+        fullName: formData.get("fullName"),
+      });
+      if (!parsed.success) {
+        return parsed.error.issues[0]?.message ?? "Input tidak valid";
+      }
 
-    const existing = await prisma.user.findUnique({ where: { email: parsed.data.email } });
-    if (existing) throw new Error("Email sudah terdaftar");
+      const existing = await prisma.user.findUnique({ where: { email: parsed.data.email } });
+      if (existing) return "Email sudah terdaftar";
 
-    const passwordHash = await bcrypt.hash(parsed.data.password, 10);
-    await prisma.user.create({
-      data: {
+      const passwordHash = await bcrypt.hash(parsed.data.password, 10);
+      await prisma.user.create({
+        data: {
+          email: parsed.data.email,
+          passwordHash,
+          fullName: parsed.data.fullName,
+          role: "CLIENT",
+        },
+      });
+
+      await signIn("credentials", {
         email: parsed.data.email,
-        passwordHash,
-        fullName: parsed.data.fullName,
-        role: "CLIENT",
-      },
-    });
-
-    await signIn("credentials", {
-      email: parsed.data.email,
-      password: parsed.data.password,
-      redirectTo: "/dashboard",
-    });
+        password: parsed.data.password,
+        redirectTo: "/dashboard",
+      });
+      return null;
+    } catch (err) {
+      if (isRedirectError(err)) throw err;
+      return "Gagal membuat akun. Coba lagi.";
+    }
   }
 
   return (
@@ -139,60 +148,7 @@ export default async function RegisterPage() {
             </p>
           </div>
 
-          {/* Form */}
-          <form action={register} className="space-y-5">
-            <div className="space-y-1.5">
-              <Label htmlFor="fullName" className="text-sm font-medium text-[#191c1e]">
-                Nama Lengkap
-              </Label>
-              <Input
-                id="fullName"
-                name="fullName"
-                autoComplete="name"
-                required
-                placeholder="Budi Santoso"
-                className="h-11 border-[#c3c6d7] placeholder:text-[#c3c6d7] focus-visible:border-[#004ac6] focus-visible:ring-2 focus-visible:ring-[#004ac6]/10"
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor="email" className="text-sm font-medium text-[#191c1e]">
-                Email
-              </Label>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                placeholder="nama@email.com"
-                className="h-11 border-[#c3c6d7] placeholder:text-[#c3c6d7] focus-visible:border-[#004ac6] focus-visible:ring-2 focus-visible:ring-[#004ac6]/10"
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <Label htmlFor="password" className="text-sm font-medium text-[#191c1e]">
-                Password
-              </Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="new-password"
-                minLength={8}
-                required
-                placeholder="Min. 8 karakter"
-                className="h-11 border-[#c3c6d7] placeholder:text-[#c3c6d7] focus-visible:border-[#004ac6] focus-visible:ring-2 focus-visible:ring-[#004ac6]/10"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="mt-1 w-full rounded-lg bg-[#004ac6] py-[0.6875rem] text-sm font-semibold text-white transition-opacity hover:opacity-90 active:scale-[0.99]"
-            >
-              Buat Akun
-            </button>
-          </form>
+          <RegisterForm action={registerAction} />
 
           <p className="mt-6 text-center text-sm text-[#434655]">
             Sudah punya akun?{" "}
