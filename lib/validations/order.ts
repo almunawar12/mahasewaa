@@ -16,3 +16,12 @@ export const customOfferSchema = z.object({
 });
 
 export type CustomOfferInput = z.infer<typeof customOfferSchema>;
+
+export const reviewSchema = z.object({
+  orderId: z.string().uuid(),
+  serviceId: z.string().uuid(),
+  rating: z.coerce.number().int().min(1).max(5),
+  comment: z.string().max(500).optional(),
+});
+
+export type ReviewInput = z.infer<typeof reviewSchema>;
