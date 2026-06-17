@@ -10,6 +10,8 @@ export default defineConfig({
     seed: "tsx prisma/seed.ts",
   },
   datasource: {
-    url: process.env["DATABASE_URL"],
+    // Use the direct connection (port 5432) for migrations/db:push.
+    // The pooled DATABASE_URL (port 6543) is used at runtime via PrismaPg adapter in lib/prisma.ts.
+    url: process.env["DIRECT_URL"],
   },
 });
