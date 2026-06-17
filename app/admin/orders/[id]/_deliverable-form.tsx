@@ -28,6 +28,8 @@ export function DeliverableForm({ orderId, currentUrl, action }: DeliverableForm
     try {
       await action(formData);
       toast.success("Deliverable dikirim. Status order → REVIEW");
+      setIsUploaded(false);
+      setSubmitting(false);
     } catch (err) {
       toast.error(err instanceof Error ? err.message : "Gagal mengirim deliverable");
       setSubmitting(false);
