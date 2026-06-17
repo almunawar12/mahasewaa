@@ -7,7 +7,16 @@ export const metadata = { title: "Admin · Edit Service" };
 
 export default async function EditServicePage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const service = await prisma.service.findUnique({ where: { id } });
+
+  const [service, categories] = await Promise.all([
+    prisma.service.findUnique({ where: { id } }),
+    prisma.category.findMany({
+      where: { isActive: true },
+      orderBy: { name: "asc" },
+      select: { id: true, name: true },
+    }),
+  ]);
+
   if (!service) notFound();
 
   const images = Array.isArray(service.imageUrls) ? (service.imageUrls as string[]) : [];
@@ -22,6 +31,7 @@ export default async function EditServicePage({ params }: { params: Promise<{ id
       <h1 className="text-2xl font-bold">Edit Service</h1>
       <ServiceForm
         action={action}
+        categories={categories}
         defaults={{
           title: service.title,
           slug: service.slug,
@@ -30,6 +40,7 @@ export default async function EditServicePage({ params }: { params: Promise<{ id
           revisionLimit: service.revisionLimit,
           deliveryDays: service.deliveryDays,
           imageUrls: images,
+          categoryId: service.categoryId,
         }}
         submitLabel="Update Service"
       />

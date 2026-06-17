@@ -14,6 +14,11 @@ function parseImages(raw: FormDataEntryValue | null): string[] {
     .filter(Boolean);
 }
 
+function parseCategoryId(raw: FormDataEntryValue | null): string | null {
+  const val = raw ? String(raw).trim() : "";
+  return val || null;
+}
+
 export async function createServiceAction(formData: FormData) {
   await requireAdmin();
   const parsed = serviceCreateSchema.safeParse({
@@ -27,7 +32,8 @@ export async function createServiceAction(formData: FormData) {
   });
   if (!parsed.success) throw new Error(parsed.error.issues[0]?.message ?? "Input tidak valid");
 
-  await prisma.service.create({ data: parsed.data });
+  const categoryId = parseCategoryId(formData.get("categoryId"));
+  await prisma.service.create({ data: { ...parsed.data, categoryId } });
   revalidatePath("/admin/services");
   redirect("/admin/services");
 }
@@ -45,7 +51,8 @@ export async function updateServiceAction(id: string, formData: FormData) {
   });
   if (!parsed.success) throw new Error(parsed.error.issues[0]?.message ?? "Input tidak valid");
 
-  await prisma.service.update({ where: { id }, data: parsed.data });
+  const categoryId = parseCategoryId(formData.get("categoryId"));
+  await prisma.service.update({ where: { id }, data: { ...parsed.data, categoryId } });
   revalidatePath("/admin/services");
   revalidatePath(`/services/${parsed.data.slug}`);
   redirect("/admin/services");

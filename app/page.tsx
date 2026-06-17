@@ -1,41 +1,36 @@
-import Link from "next/link";
-import { Navbar } from "@/components/shared/navbar";
-import { Footer } from "@/components/shared/footer";
-import { ServiceCard } from "@/components/features/service-card";
-import { prisma } from "@/lib/prisma";
+import Link from 'next/link';
+import { Navbar } from '@/components/shared/navbar';
+import { Footer } from '@/components/shared/footer';
+import { ServiceCard } from '@/components/features/service-card';
+import { prisma } from '@/lib/prisma';
 
 export const revalidate = 300;
 
-const CATEGORIES = [
-  { icon: "design_services", label: "Desain Grafis" },
-  { icon: "code", label: "Programming & Tech" },
-  { icon: "edit_document", label: "Penulisan & Terjemahan" },
-  { icon: "campaign", label: "Digital Marketing" },
-];
+const POPULAR_TAGS = ['Desain Logo', 'Web Development', 'Copywriting'];
 
-const POPULAR_TAGS = ["Desain Logo", "Web Development", "Copywriting"];
-
-async function getFeaturedServices() {
+async function getPageData() {
   try {
-    return await prisma.service.findMany({
-      where: { isActive: true },
-      orderBy: { createdAt: "desc" },
-      take: 4,
-      select: {
-        id: true,
-        title: true,
-        slug: true,
-        basePrice: true,
-        imageUrls: true,
-      },
-    });
+    const [services, categories] = await Promise.all([
+      prisma.service.findMany({
+        where: { isActive: true },
+        orderBy: { createdAt: 'desc' },
+        take: 4,
+        select: { id: true, title: true, slug: true, basePrice: true, imageUrls: true },
+      }),
+      prisma.category.findMany({
+        where: { isActive: true },
+        orderBy: { createdAt: 'asc' },
+        select: { id: true, name: true, slug: true, icon: true },
+      }),
+    ]);
+    return { services, categories };
   } catch {
-    return [];
+    return { services: [], categories: [] };
   }
 }
 
 export default async function HomePage() {
-  const services = await getFeaturedServices();
+  const { services, categories } = await getPageData();
 
   return (
     <>
@@ -45,11 +40,11 @@ export default async function HomePage() {
         {/* Hero */}
         <section className="mx-auto flex min-h-[614px] max-w-[1280px] flex-col items-center justify-center px-4 py-16 text-center md:px-16 md:py-24">
           <h1 className="mb-6 max-w-4xl text-3xl font-bold tracking-tight text-[#191c1e] md:text-4xl lg:text-5xl">
-            Temukan Jasa Digital Terbaik
+            Temukan Jasa Profesional Terbaik
           </h1>
           <p className="mb-10 max-w-2xl text-base text-[#434655] md:text-lg">
-            Solusi profesional untuk kebutuhan bisnis Anda. Temukan desainer, penulis, dan pengembang handal dalam
-            hitungan menit.
+            Solusi profesional untuk kebutuhan bisnis Anda. Temukan desainer,
+            penulis, dan pengembang handal dalam hitungan menit.
           </p>
 
           {/* Mobile search */}
@@ -101,27 +96,29 @@ export default async function HomePage() {
         </section>
 
         {/* Categories */}
-        <section className="border-y border-[#c3c6d7] bg-[#f7f9fb] px-4 py-12 md:px-16">
-          <div className="mx-auto max-w-[1280px]">
-            <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[#191c1e] md:text-3xl">
-              Kategori Populer
-            </h2>
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-              {CATEGORIES.map((cat) => (
-                <Link
-                  key={cat.label}
-                  href={`/services?cat=${encodeURIComponent(cat.label)}`}
-                  className="group flex flex-col items-center justify-center rounded-xl border border-[#c3c6d7] bg-white p-6 transition-all hover:border-[#004ac6]/50 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)]"
-                >
-                  <span className="material-symbols-outlined mb-3 text-4xl text-[#505f76] transition-colors group-hover:text-[#004ac6]">
-                    {cat.icon}
-                  </span>
-                  <span className="text-center text-sm font-medium text-[#191c1e]">{cat.label}</span>
-                </Link>
-              ))}
+        {categories.length > 0 && (
+          <section className="border-y border-[#c3c6d7] bg-[#f7f9fb] px-4 py-12 md:px-16">
+            <div className="mx-auto max-w-[1280px]">
+              <h2 className="mb-8 text-2xl font-semibold tracking-tight text-[#191c1e] md:text-3xl">
+                Kategori Populer
+              </h2>
+              <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.id}
+                    href={`/services?cat=${encodeURIComponent(cat.slug)}`}
+                    className="group flex flex-col items-center justify-center rounded-xl border border-[#c3c6d7] bg-white p-6 transition-all hover:border-[#004ac6]/50 hover:shadow-[0_4px_15px_rgba(0,0,0,0.05)]"
+                  >
+                    <span className="material-symbols-outlined mb-3 text-4xl text-[#505f76] transition-colors group-hover:text-[#004ac6]">
+                      {cat.icon}
+                    </span>
+                    <span className="text-center text-sm font-medium text-[#191c1e]">{cat.name}</span>
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Featured Gigs */}
         <section className="mx-auto max-w-[1280px] px-4 py-16 md:px-16">
@@ -129,17 +126,14 @@ export default async function HomePage() {
             <h2 className="text-2xl font-semibold tracking-tight text-[#191c1e] md:text-3xl">
               Jasa Rekomendasi
             </h2>
-            <Link
-              href="/services"
-              className="hidden text-sm font-medium text-[#004ac6] hover:underline md:block"
-            >
+            <Link href="/services" className="hidden text-sm font-medium text-[#004ac6] hover:underline md:block">
               Lihat Semua
             </Link>
           </div>
 
           {services.length === 0 ? (
             <p className="rounded-xl border border-dashed border-[#c3c6d7] bg-[#f7f9fb] py-12 text-center text-[#434655]">
-              Belum ada jasa. Jalankan{" "}
+              Belum ada jasa. Jalankan{' '}
               <code className="rounded bg-[#eceef0] px-2 py-0.5 text-xs">npm run db:seed</code>.
             </p>
           ) : (

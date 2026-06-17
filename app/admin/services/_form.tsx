@@ -11,15 +11,20 @@ export type ServiceFormDefaults = {
   revisionLimit?: number;
   deliveryDays?: number;
   imageUrls?: string[];
+  categoryId?: string | null;
 };
+
+export type CategoryOption = { id: string; name: string };
 
 export function ServiceForm({
   action,
   defaults = {},
+  categories = [],
   submitLabel = "Simpan",
 }: {
   action: (formData: FormData) => void | Promise<void>;
   defaults?: ServiceFormDefaults;
+  categories?: CategoryOption[];
   submitLabel?: string;
 }) {
   return (
@@ -35,6 +40,23 @@ export function ServiceForm({
               <Label htmlFor="slug">Slug</Label>
               <Input id="slug" name="slug" defaultValue={defaults.slug} required pattern="[a-z0-9-]+" />
             </div>
+          </div>
+
+          <div className="space-y-1.5">
+            <Label htmlFor="categoryId">Kategori</Label>
+            <select
+              id="categoryId"
+              name="categoryId"
+              defaultValue={defaults.categoryId ?? ""}
+              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+            >
+              <option value="">— Tanpa Kategori —</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.name}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className="space-y-1.5">

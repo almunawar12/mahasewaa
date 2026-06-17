@@ -11,40 +11,61 @@ export const metadata = {
 export default async function ServicesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; cat?: string }>;
 }) {
-  const { q } = await searchParams;
+  const { q, cat } = await searchParams;
   const query = q?.trim();
+  const catSlug = cat?.trim();
 
-  const services = await prisma.service
-    .findMany({
-      where: {
-        isActive: true,
-        ...(query
-          ? {
-              OR: [
-                { title: { contains: query, mode: "insensitive" } },
-                { description: { contains: query, mode: "insensitive" } },
-              ],
-            }
-          : {}),
-      },
-      orderBy: { createdAt: "desc" },
-      select: { id: true, title: true, slug: true, basePrice: true, imageUrls: true },
-    })
-    .catch(() => []);
+  const [services, activeCategory] = await Promise.all([
+    prisma.service
+      .findMany({
+        where: {
+          isActive: true,
+          ...(catSlug ? { category: { slug: catSlug } } : {}),
+          ...(query
+            ? {
+                OR: [
+                  { title: { contains: query, mode: "insensitive" } },
+                  { description: { contains: query, mode: "insensitive" } },
+                ],
+              }
+            : {}),
+        },
+        orderBy: { createdAt: "desc" },
+        select: { id: true, title: true, slug: true, basePrice: true, imageUrls: true },
+      })
+      .catch(() => []),
+    catSlug
+      ? prisma.category.findUnique({ where: { slug: catSlug }, select: { name: true } }).catch(() => null)
+      : null,
+  ]);
+
+  const heading = activeCategory
+    ? activeCategory.name
+    : query
+      ? `"${query}" — ${services.length} hasil ditemukan`
+      : "Semua Jasa";
 
   return (
     <>
       <Navbar />
       <main className="mx-auto max-w-6xl flex-1 px-4 py-10">
-        {query ? (
-          <h1 className="mb-6 text-3xl font-bold">
-            &ldquo;{query}&rdquo; — {services.length} hasil ditemukan
-          </h1>
-        ) : (
-          <h1 className="mb-6 text-3xl font-bold">Semua Jasa</h1>
+        <div className="mb-6 flex items-center justify-between">
+          <h1 className="text-3xl font-bold">{heading}</h1>
+          {(catSlug || query) && (
+            <a href="/services" className="text-sm text-[#434655] hover:text-[#004ac6]">
+              ← Semua Jasa
+            </a>
+          )}
+        </div>
+
+        {activeCategory && query && (
+          <p className="mb-4 text-sm text-[#434655]">
+            {services.length} hasil untuk &ldquo;{query}&rdquo; dalam kategori ini
+          </p>
         )}
+
         {services.length === 0 ? (
           <p className="text-slate-500">Tidak ada jasa yang cocok dengan pencarian.</p>
         ) : (
