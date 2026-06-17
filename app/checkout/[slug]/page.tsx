@@ -4,10 +4,8 @@ import { prisma } from "@/lib/prisma";
 import { orderCreateSchema } from "@/lib/validations/order";
 import { Navbar } from "@/components/shared/navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { formatIDR } from "@/lib/utils";
+import { CheckoutForm } from "./_checkout-form";
 
 export const metadata = { title: "Checkout" };
 
@@ -27,6 +25,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
     const parsed = orderCreateSchema.safeParse({
       serviceId: service!.id,
       briefNotes: formData.get("briefNotes"),
+      briefFileUrl: formData.get("briefFileUrl") || undefined,
       totalAmount: service!.basePrice.toString(),
     });
     if (!parsed.success) throw new Error(parsed.error.issues[0]?.message ?? "Input tidak valid");
@@ -37,14 +36,13 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
         serviceId: parsed.data.serviceId,
         totalAmount: parsed.data.totalAmount,
         briefNotes: parsed.data.briefNotes,
+        briefFileUrl: parsed.data.briefFileUrl ?? null,
         status: "PENDING",
       },
     });
 
     redirect(`/dashboard/orders/${order.id}`);
   }
-
-  void userId;
 
   return (
     <>
@@ -56,24 +54,7 @@ export default async function CheckoutPage({ params }: { params: Promise<{ slug:
               <CardTitle>Brief Pesanan</CardTitle>
             </CardHeader>
             <CardContent>
-              <form action={createOrder} className="space-y-4">
-                <div className="space-y-1.5">
-                  <Label htmlFor="briefNotes">Detail kebutuhan Anda</Label>
-                  <textarea
-                    id="briefNotes"
-                    name="briefNotes"
-                    required
-                    minLength={10}
-                    rows={6}
-                    className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
-                  />
-                </div>
-                <div className="space-y-1.5">
-                  <Label htmlFor="briefFileUrl">Lampiran (URL, opsional)</Label>
-                  <Input id="briefFileUrl" name="briefFileUrl" placeholder="https://…" />
-                </div>
-                <Button type="submit" className="w-full">Buat Pesanan</Button>
-              </form>
+              <CheckoutForm action={createOrder} userId={userId} />
             </CardContent>
           </Card>
         </div>
