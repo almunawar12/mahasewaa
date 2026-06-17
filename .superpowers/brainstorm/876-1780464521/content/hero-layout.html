@@ -1,0 +1,285 @@
+<h2>Layout Hero Section</h2>
+<p class="subtitle">Warm & Human palette — pilih struktur hero yang paling pas</p>
+
+<style>
+.hero-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+}
+.hero-card {
+  border: 2px solid #e0e0e0;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: white;
+}
+.hero-card:hover { border-color: #aaa; }
+.hero-card.selected { border-color: #bc4800; box-shadow: 0 0 0 4px rgba(188,72,0,0.1); }
+
+.hero-preview {
+  height: 240px;
+  background: #fdf8f3;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+
+/* A: Center + Search */
+.pa {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+.pa .label {
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #bc4800;
+  background: #fde8d8;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 10px;
+}
+.pa h1 { font-size: 20px; font-weight: 800; color: #1a1208; line-height: 1.2; margin-bottom: 6px; }
+.pa h1 span { color: #bc4800; }
+.pa p { font-size: 9px; color: #7a6552; margin-bottom: 12px; }
+.pa .search {
+  width: 90%;
+  background: white;
+  border: 1.5px solid #e8d5c0;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 8.5px;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.pa .deco1 {
+  position: absolute;
+  right: -20px; top: -20px;
+  width: 80px; height: 80px;
+  background: radial-gradient(circle, #fde8d8, transparent);
+  border-radius: 50%;
+}
+
+/* B: Left-aligned, no search */
+.pb {
+  padding: 22px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.pb .blob {
+  position: absolute;
+  right: 10px; top: 10px;
+  width: 110px; height: 110px;
+  background: linear-gradient(135deg, #fde8d8 0%, #fdf0e8 100%);
+  border-radius: 40% 60% 50% 50%;
+  opacity: 0.7;
+}
+.pb .blob2 {
+  position: absolute;
+  right: 40px; top: 40px;
+  width: 60px; height: 60px;
+  background: #fde8d8;
+  border-radius: 50%;
+  opacity: 0.4;
+}
+.pb .cat-strip {
+  display: flex; gap: 5px; margin-bottom: 14px;
+}
+.pb .cat-pill {
+  font-size: 7.5px;
+  background: white;
+  border: 1px solid #e8d5c0;
+  color: #7a6552;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.pb h1 { font-size: 22px; font-weight: 800; color: #1a1208; line-height: 1.2; margin-bottom: 6px; }
+.pb h1 em { color: #bc4800; font-style: italic; }
+.pb p { font-size: 9px; color: #7a6552; margin-bottom: 12px; line-height: 1.4; }
+.pb .cta-row { display: flex; gap: 7px; }
+.pb .btn-main {
+  background: #bc4800; color: white;
+  font-size: 8.5px; font-weight: 700;
+  padding: 6px 14px; border-radius: 8px;
+}
+.pb .btn-sec {
+  border: 1.5px solid #e8d5c0; color: #7a6552;
+  font-size: 8.5px; padding: 6px 12px; border-radius: 8px;
+  display: flex; align-items: center; gap: 4px;
+}
+
+/* C: Split — left text, right visual */
+.pc {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  height: 100%;
+}
+.pc-left {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fdf8f3;
+}
+.pc-right {
+  background: linear-gradient(145deg, #fde8d8, #fff3ec);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  position: relative;
+}
+.pc-left .badge {
+  font-size: 7.5px; font-weight: 600;
+  color: #bc4800; letter-spacing: 1.5px;
+  text-transform: uppercase; margin-bottom: 8px;
+}
+.pc-left h1 { font-size: 18px; font-weight: 800; color: #1a1208; line-height: 1.25; margin-bottom: 6px; }
+.pc-left h1 span { color: #bc4800; }
+.pc-left p { font-size: 8px; color: #7a6552; margin-bottom: 10px; line-height: 1.4; }
+.pc-left .btn {
+  background: #bc4800; color: white;
+  font-size: 8px; font-weight: 700;
+  padding: 6px 12px; border-radius: 7px;
+  display: inline-block; width: fit-content;
+}
+.pc-right .mini-card {
+  background: white;
+  border-radius: 8px;
+  padding: 7px 10px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex; align-items: center; gap: 7px;
+}
+.pc-right .mc-avatar {
+  width: 22px; height: 22px; border-radius: 50%;
+  flex-shrink: 0;
+}
+.pc-right .mc-info { flex: 1; }
+.pc-right .mc-title { font-size: 7.5px; font-weight: 600; color: #1a1208; margin-bottom: 1px; }
+.pc-right .mc-meta { font-size: 6.5px; color: #aaa; }
+.pc-right .mc-price { font-size: 9px; font-weight: 700; color: #bc4800; }
+.avatar-a { background: linear-gradient(135deg, #fde8d8, #bc4800); }
+.avatar-b { background: linear-gradient(135deg, #dbeafe, #3b82f6); }
+.avatar-c { background: linear-gradient(135deg, #d1fae5, #10b981); }
+
+.dir-info {
+  padding: 14px;
+  border-top: 1px solid #f5ede4;
+}
+.dir-info h3 { font-size: 13px; font-weight: 700; margin-bottom: 3px; color: #1a1208; }
+.dir-info p { font-size: 11.5px; color: #7a6552; line-height: 1.4; margin-bottom: 7px; }
+.dir-info .tags { display: flex; gap: 5px; flex-wrap: wrap; }
+.dir-info .tag {
+  font-size: 9.5px;
+  background: #fdf0e8;
+  color: #bc4800;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid #fde8d8;
+}
+</style>
+
+<div class="hero-cards">
+
+  <!-- A: Center + Search -->
+  <div class="hero-card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="hero-preview pa">
+      <div class="deco1"></div>
+      <div class="label">✦ Marketplace Jasa Digital</div>
+      <h1>Jasa digital untuk<br><span>bisnis kamu</span></h1>
+      <p>Temukan desainer, developer & penulis terpercaya.</p>
+      <div class="search">
+        <svg width="9" height="9" fill="none" viewBox="0 0 24 24" stroke="#aaa" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        Cari layanan apa hari ini?
+      </div>
+    </div>
+    <div class="dir-info">
+      <h3>A — Center + Search</h3>
+      <p>Mirip current, tapi dengan warm palette. Search tetap jadi fokus utama. Familiar, fungsional.</p>
+      <div class="tags"><span class="tag">Center-aligned</span><span class="tag">Search focus</span></div>
+    </div>
+  </div>
+
+  <!-- B: Left + Bold, no search -->
+  <div class="hero-card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="hero-preview pb">
+      <div class="blob"></div>
+      <div class="blob2"></div>
+      <div class="cat-strip">
+        <span class="cat-pill">Desain</span>
+        <span class="cat-pill">Dev</span>
+        <span class="cat-pill">Konten</span>
+        <span class="cat-pill">Marketing</span>
+      </div>
+      <h1>Kerja bareng<br>orang <em>berbakat.</em></h1>
+      <p>Dari logo sampai website — jasa digital terbaik ada di sini.</p>
+      <div class="cta-row">
+        <div class="btn-main">Jelajahi Jasa →</div>
+        <div class="btn-sec">Cara Kerja</div>
+      </div>
+    </div>
+    <div class="dir-info">
+      <h3>B — Left-Aligned Bold</h3>
+      <p>Tidak ada search di hero. Left-aligned, bold typography, organic blob shapes. Lebih editorial.</p>
+      <div class="tags"><span class="tag">Left-aligned</span><span class="tag">Editorial</span><span class="tag">No search</span></div>
+    </div>
+  </div>
+
+  <!-- C: Split Layout -->
+  <div class="hero-card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="hero-preview pc">
+      <div class="pc-left">
+        <div class="badge">✦ Jasa Digital</div>
+        <h1>Temukan <span>talent</span><br>terbaik kamu</h1>
+        <p>Profesional terverifikasi siap<br>bantu bisnis berkembang.</p>
+        <div class="btn">Mulai Sekarang →</div>
+      </div>
+      <div class="pc-right">
+        <div class="mini-card">
+          <div class="mc-avatar avatar-a"></div>
+          <div class="mc-info">
+            <div class="mc-title">Desain Logo Premium</div>
+            <div class="mc-meta">⭐ 4.9 · 120 ulasan</div>
+          </div>
+          <div class="mc-price">300rb</div>
+        </div>
+        <div class="mini-card">
+          <div class="mc-avatar avatar-b"></div>
+          <div class="mc-info">
+            <div class="mc-title">Landing Page React</div>
+            <div class="mc-meta">⭐ 5.0 · 84 ulasan</div>
+          </div>
+          <div class="mc-price">750rb</div>
+        </div>
+        <div class="mini-card">
+          <div class="mc-avatar avatar-c"></div>
+          <div class="mc-info">
+            <div class="mc-title">Copywriting Iklan</div>
+            <div class="mc-meta">⭐ 4.8 · 56 ulasan</div>
+          </div>
+          <div class="mc-price">150rb</div>
+        </div>
+      </div>
+    </div>
+    <div class="dir-info">
+      <h3>C — Split: Teks + Preview Kartu</h3>
+      <p>Kiri teks CTA, kanan preview kartu jasa langsung. Tunjukkan produk dari awal, lebih konkret.</p>
+      <div class="tags"><span class="tag">Split layout</span><span class="tag">Social proof</span><span class="tag">Product-first</span></div>
+    </div>
+  </div>
+
+</div>
