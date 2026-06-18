@@ -6,7 +6,7 @@ import { prisma } from '@/lib/prisma';
 
 export const revalidate = 300;
 
-const POPULAR_TAGS = ['Desain Logo', 'Web Development', 'Copywriting'];
+const POPULAR_TAGS = ['Denah Rumah', 'Website', 'Foto Produk', 'Event Organizer'];
 
 async function getPageData() {
   try {
