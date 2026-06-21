@@ -48,7 +48,10 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
 
   const partners = service.categoryId
     ? await prisma.partner.findMany({
-        where: { categoryId: service.categoryId, isActive: true },
+        where: {
+          isActive: true,
+          categories: { some: { id: service.categoryId } },
+        },
         orderBy: { createdAt: "desc" },
         take: 6,
       })

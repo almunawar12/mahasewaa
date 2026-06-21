@@ -8,7 +8,7 @@ export type PartnerFormDefaults = {
   name?: string
   photoUrl?: string
   skills?: string[]
-  categoryId?: string | null
+  categoryIds?: string[]
   isActive?: boolean
 }
 
@@ -27,6 +27,8 @@ export function PartnerForm({
   submitLabel = "Simpan",
   categories,
 }: Props) {
+  const selectedIds = defaults.categoryIds ?? []
+
   return (
     <Card>
       <CardHeader>
@@ -69,20 +71,25 @@ export function PartnerForm({
           </div>
 
           <div className="space-y-1.5">
-            <Label htmlFor="categoryId">Kategori</Label>
-            <select
-              id="categoryId"
-              name="categoryId"
-              defaultValue={defaults.categoryId ?? ""}
-              className="w-full h-10 px-3 py-2 border rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500"
-            >
-              <option value="">— Pilih Kategori —</option>
-              {categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.name}
-                </option>
-              ))}
-            </select>
+            <Label>Kategori (bisa pilih lebih dari satu)</Label>
+            {categories.length === 0 ? (
+              <p className="text-xs text-slate-400">Belum ada kategori aktif.</p>
+            ) : (
+              <div className="grid grid-cols-2 gap-2 rounded-md border p-3">
+                {categories.map((c) => (
+                  <label key={c.id} className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      name="categoryIds"
+                      value={c.id}
+                      defaultChecked={selectedIds.includes(c.id)}
+                      className="h-4 w-4 accent-emerald-600"
+                    />
+                    <span className="text-sm text-slate-700">{c.name}</span>
+                  </label>
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="space-y-1.5">

@@ -13,7 +13,10 @@ export default async function EditPartnerPage({ params }: Props) {
   await requireAdmin()
 
   const { id } = await params
-  const partner = await prisma.partner.findUnique({ where: { id } })
+  const partner = await prisma.partner.findUnique({
+    where: { id },
+    include: { categories: { select: { id: true } } },
+  })
   if (!partner) notFound()
 
   const categories = await prisma.category.findMany({
@@ -42,7 +45,7 @@ export default async function EditPartnerPage({ params }: Props) {
           name: partner.name,
           photoUrl: partner.photoUrl,
           skills: partner.skills,
-          categoryId: partner.categoryId,
+          categoryIds: partner.categories.map((c) => c.id),
           isActive: partner.isActive,
         }}
         submitLabel="Simpan Perubahan"

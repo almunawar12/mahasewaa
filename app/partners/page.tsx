@@ -19,6 +19,7 @@ export default async function PartnersPage() {
       partners: {
         where: { isActive: true },
         orderBy: { createdAt: "desc" },
+        include: { categories: false },
       },
     },
     orderBy: { name: "asc" },

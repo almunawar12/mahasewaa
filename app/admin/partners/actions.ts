@@ -18,11 +18,15 @@ function parseSkills(raw: string | null): string[] {
   }
 }
 
+function parseCategoryIds(formData: FormData): string[] {
+  return formData.getAll("categoryIds").map((v) => v.toString()).filter(Boolean)
+}
+
 export async function createPartnerAction(formData: FormData) {
   await requireAdmin()
 
   const name = formData.get("name")?.toString().trim()
-  const categoryId = formData.get("categoryId")?.toString() || null
+  const categoryIds = parseCategoryIds(formData)
   const skills = parseSkills(formData.get("skills")?.toString() ?? null)
   const photoFile = formData.get("photo") as File | null
 
@@ -32,11 +36,17 @@ export async function createPartnerAction(formData: FormData) {
   const photoUrl = await uploadPhoto(photoFile, BUCKET)
 
   await prisma.partner.create({
-    data: { name, photoUrl, skills, categoryId },
+    data: {
+      name,
+      photoUrl,
+      skills,
+      categories: { connect: categoryIds.map((id) => ({ id })) },
+    },
   })
 
   revalidatePath("/admin/partners")
   revalidatePath("/services", "layout")
+  revalidatePath("/partners")
   redirect("/admin/partners")
 }
 
@@ -44,7 +54,7 @@ export async function updatePartnerAction(id: string, formData: FormData) {
   await requireAdmin()
 
   const name = formData.get("name")?.toString().trim()
-  const categoryId = formData.get("categoryId")?.toString() || null
+  const categoryIds = parseCategoryIds(formData)
   const skills = parseSkills(formData.get("skills")?.toString() ?? null)
   const photoFile = formData.get("photo") as File | null
 
@@ -61,11 +71,17 @@ export async function updatePartnerAction(id: string, formData: FormData) {
 
   await prisma.partner.update({
     where: { id },
-    data: { name, photoUrl, skills, categoryId },
+    data: {
+      name,
+      photoUrl,
+      skills,
+      categories: { set: categoryIds.map((id) => ({ id })) },
+    },
   })
 
   revalidatePath("/admin/partners")
   revalidatePath("/services", "layout")
+  revalidatePath("/partners")
   redirect("/admin/partners")
 }
 
@@ -80,6 +96,7 @@ export async function deletePartnerAction(id: string) {
 
   revalidatePath("/admin/partners")
   revalidatePath("/services", "layout")
+  revalidatePath("/partners")
 }
 
 export async function togglePartnerAction(id: string) {

@@ -9,7 +9,7 @@ export default async function PartnersPage() {
 
   const partners = await prisma.partner.findMany({
     orderBy: { createdAt: "desc" },
-    include: { category: { select: { name: true } } },
+    include: { categories: { select: { name: true } } },
   })
 
   return (
@@ -56,7 +56,9 @@ export default async function PartnersPage() {
                     </div>
                   </td>
                   <td className="px-4 py-3 text-slate-600">
-                    {p.category?.name ?? <span className="text-slate-400 italic">—</span>}
+                    {p.categories.length > 0
+                      ? p.categories.map((c) => c.name).join(", ")
+                      : <span className="text-slate-400 italic">—</span>}
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
