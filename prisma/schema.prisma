@@ -47,6 +47,7 @@ model Category {
   createdAt DateTime  @default(now())
 
   services Service[]
+  partners Partner[]
 
   @@map("categories")
 }
@@ -142,4 +143,17 @@ model Review {
 
   @@index([serviceId])
   @@map("reviews")
+}
+
+model Partner {
+  id         String    @id @default(uuid()) @db.Uuid
+  name       String
+  photoUrl   String
+  skills     String[]
+  isActive   Boolean   @default(true)
+  categoryId String?   @db.Uuid
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  createdAt  DateTime  @default(now())
+
+  @@map("partners")
 }
