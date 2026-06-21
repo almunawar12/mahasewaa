@@ -35,6 +35,13 @@ export function NavbarClient({ session, signOutAction }: NavbarClientProps) {
           >
             Browse
           </Link>
+          <Link
+            href="/partners"
+            onClick={close}
+            className="rounded-md px-3 py-2 text-sm font-medium text-[#434655] hover:bg-[#f2f4f6] hover:text-[#004ac6]"
+          >
+            Our Partners
+          </Link>
 
           {session?.user ? (
             <>

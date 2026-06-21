@@ -31,6 +31,12 @@ export async function Navbar() {
           >
             Browse
           </Link>
+          <Link
+            href="/partners"
+            className="rounded-md px-3 py-2 text-sm font-medium text-[#434655] transition-colors hover:bg-[#f2f4f6] hover:text-[#004ac6]"
+          >
+            Our Partners
+          </Link>
 
           {session?.user ? (
             <div className="flex items-center gap-3">
