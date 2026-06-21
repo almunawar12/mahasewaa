@@ -29,7 +29,7 @@ export default async function PartnersPage() {
       <Navbar />
 
       <main className="mx-auto w-full max-w-[1280px] flex-grow px-4 py-12 md:px-16">
-        <div className="mb-10 text-center animate-fade-up">
+        <div className="mb-10 text-center">
           <h1 className="text-4xl font-bold text-[#191c1e] mb-3">Our Partners</h1>
           <p className="text-[#434655] text-lg max-w-xl mx-auto">
             Tim profesional kami siap membantu kebutuhan digital Anda dengan keahlian terbaik.
@@ -38,7 +38,7 @@ export default async function PartnersPage() {
         </div>
 
         {data.length === 0 ? (
-          <div className="text-center py-20 text-slate-400 animate-fade-up">
+          <div className="text-center py-20 text-slate-400">
             <p className="text-5xl mb-4">👥</p>
             <p className="text-lg font-medium">Belum ada partner</p>
           </div>

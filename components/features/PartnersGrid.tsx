@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { PartnerCard } from "@/components/features/PartnerCard"
 import { PartnerModal, type PartnerModalData } from "@/components/features/PartnerModal"
 
@@ -15,13 +16,21 @@ export function PartnersGrid({ partners }: Props) {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-        {partners.map((partner, i) => (
-          <button
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } } }}
+        className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5"
+      >
+        {partners.map((partner) => (
+          <motion.button
             key={partner.id}
+            variants={{ hidden: { opacity: 0, y: 24 }, show: { opacity: 1, y: 0 } }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
             onClick={() => setSelected(partner)}
-            className="animate-fade-up text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-xl"
-            style={{ animationDelay: `${i * 60}ms` }}
+            className="text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-xl"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
           >
             <PartnerCard
               name={partner.name}
@@ -29,13 +38,15 @@ export function PartnersGrid({ partners }: Props) {
               skills={partner.skills}
               categories={partner.categories}
             />
-          </button>
+          </motion.button>
         ))}
-      </div>
+      </motion.div>
 
-      {selected && (
-        <PartnerModal partner={selected} onClose={() => setSelected(null)} />
-      )}
+      <AnimatePresence>
+        {selected && (
+          <PartnerModal partner={selected} onClose={() => setSelected(null)} />
+        )}
+      </AnimatePresence>
     </>
   )
 }
