@@ -2,9 +2,10 @@ interface Props {
   name: string
   photoUrl: string
   skills: string[]
+  categories?: string[]
 }
 
-export function PartnerCard({ name, photoUrl, skills }: Props) {
+export function PartnerCard({ name, photoUrl, skills, categories }: Props) {
   const displaySkills = skills.slice(0, 3)
   const remaining = skills.length - displaySkills.length
 
@@ -16,6 +17,9 @@ export function PartnerCard({ name, photoUrl, skills }: Props) {
         className="w-20 h-20 rounded-full object-cover border-2 border-emerald-100 mb-3"
       />
       <p className="font-semibold text-slate-800 text-sm">{name}</p>
+      {categories && categories.length > 0 && (
+        <p className="text-xs text-emerald-600 mt-0.5">{categories.join(" · ")}</p>
+      )}
       <div className="flex flex-wrap justify-center gap-1 mt-2">
         {displaySkills.map((skill) => (
           <span
