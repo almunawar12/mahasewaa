@@ -6,6 +6,7 @@ import { Footer } from "@/components/shared/footer";
 import { ServiceGallery } from "@/components/features/service-gallery";
 import { prisma } from "@/lib/prisma";
 import { formatIDR } from "@/lib/utils";
+import { PartnerCard } from "@/components/features/PartnerCard";
 
 type Params = { slug: string };
 
@@ -44,6 +45,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
   if (!service) notFound();
 
   const images = Array.isArray(service.imageUrls) ? (service.imageUrls as string[]) : [];
+
+  const partners = service.categoryId
+    ? await prisma.partner.findMany({
+        where: { categoryId: service.categoryId, isActive: true },
+        orderBy: { createdAt: "desc" },
+        take: 6,
+      })
+    : [];
+
   const ratingCount = service.reviews.length;
   const ratingAvg =
     ratingCount > 0
@@ -97,6 +107,23 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                 {service.description}
               </div>
             </div>
+
+            {/* Partners */}
+            {partners.length > 0 && (
+              <div className="rounded-xl border border-[#c3c6d7] bg-white p-6 md:p-8">
+                <h2 className="mb-4 text-2xl font-semibold text-[#191c1e]">Tim Partner Kami</h2>
+                <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+                  {partners.map((partner) => (
+                    <PartnerCard
+                      key={partner.id}
+                      name={partner.name}
+                      photoUrl={partner.photoUrl}
+                      skills={partner.skills}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Reviews preview */}
             {ratingCount > 0 && (
