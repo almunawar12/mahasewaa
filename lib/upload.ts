@@ -1,6 +1,14 @@
-import { supabase } from "@/lib/supabase"
+import { createClient } from "@supabase/supabase-js"
+
+function getAdminClient() {
+  return createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!
+  )
+}
 
 export async function uploadPhoto(file: File, bucket: string): Promise<string> {
+  const supabase = getAdminClient()
   const ext = file.name.split(".").pop() ?? "jpg"
   const filename = `${crypto.randomUUID()}.${ext}`
   const buffer = Buffer.from(await file.arrayBuffer())
@@ -18,5 +26,6 @@ export async function uploadPhoto(file: File, bucket: string): Promise<string> {
 export async function deletePhoto(url: string, bucket: string): Promise<void> {
   const filename = url.split("/").pop()
   if (!filename) return
+  const supabase = getAdminClient()
   await supabase.storage.from(bucket).remove([filename])
 }
