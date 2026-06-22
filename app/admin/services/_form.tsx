@@ -48,7 +48,7 @@ export function ServiceForm({
               id="categoryId"
               name="categoryId"
               defaultValue={defaults.categoryId ?? ""}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
               <option value="">— Tanpa Kategori —</option>
               {categories.map((cat) => (
@@ -68,7 +68,7 @@ export function ServiceForm({
               required
               minLength={20}
               rows={6}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             />
           </div>
 
@@ -108,12 +108,12 @@ export function ServiceForm({
               name="imageUrls"
               defaultValue={(defaults.imageUrls ?? []).join("\n")}
               rows={3}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
               placeholder="https://…"
             />
           </div>
 
-          <Button type="submit">{submitLabel}</Button>
+          <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">{submitLabel}</Button>
         </form>
       </CardContent>
     </Card>

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { ServiceForm } from "../../_form";
 import { updateServiceAction } from "../../actions";
+import { AdminPageHeader } from "@/components/shared/admin-page-header";
 
 export const metadata = { title: "Admin · Edit Service" };
 
@@ -28,7 +29,7 @@ export default async function EditServicePage({ params }: { params: Promise<{ id
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Edit Service</h1>
+      <AdminPageHeader title="Edit Service" backHref="/admin/services" />
       <ServiceForm
         action={action}
         categories={categories}
