@@ -19,7 +19,7 @@ export function OrderRow({
 }) {
   return (
     <Link
-      href={`/dashboard/orders/${order.id}`}
+      href={`/admin/orders/${order.id}`}
       className="flex items-center justify-between border-b border-slate-200 px-4 py-3 last:border-0 hover:bg-slate-50"
     >
       <div>
