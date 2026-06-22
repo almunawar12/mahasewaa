@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import { formatIDR } from "@/lib/utils";
+import { AdminPageHeader } from "@/components/shared/admin-page-header";
+import { AdminEmptyState } from "@/components/shared/admin-empty-state";
 
 export const metadata = { title: "Admin · Orders" };
 
@@ -32,7 +34,7 @@ export default async function AdminOrdersPage({
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Orders</h1>
+      <AdminPageHeader title="Orders" />
 
       <div className="flex flex-wrap gap-2">
         {filters.map((f) => {
@@ -41,9 +43,11 @@ export default async function AdminOrdersPage({
             <Link
               key={f}
               href={f === "ALL" ? "/admin/orders" : `/admin/orders?status=${f}`}
-              className={`rounded-full px-3 py-1 text-xs font-semibold ${
-                active ? "bg-slate-900 text-white" : "bg-white text-slate-600 hover:bg-slate-100"
-              } border border-slate-200`}
+              className={`rounded-full border px-3 py-1 text-xs font-semibold transition-colors ${
+                active
+                  ? "border-emerald-600 bg-emerald-600 text-white"
+                  : "border-slate-200 bg-white text-slate-600 hover:bg-slate-50"
+              }`}
             >
               {f}
             </Link>
@@ -51,29 +55,25 @@ export default async function AdminOrdersPage({
         })}
       </div>
 
-      <Card>
-        <CardContent className="p-0">
-          <table className="w-full text-sm">
-            <thead className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase text-slate-500">
-              <tr>
-                <th className="px-4 py-3">Order</th>
-                <th className="px-4 py-3">Client</th>
-                <th className="px-4 py-3">Total</th>
-                <th className="px-4 py-3">Status</th>
-                <th className="px-4 py-3">Tanggal</th>
-                <th className="px-4 py-3"></th>
-              </tr>
-            </thead>
-            <tbody>
-              {orders.length === 0 ? (
+      {orders.length === 0 ? (
+        <AdminEmptyState message="Tidak ada order." />
+      ) : (
+        <Card>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[640px] text-sm">
+              <thead className="border-b border-slate-200 bg-slate-50 text-left text-xs uppercase text-slate-500">
                 <tr>
-                  <td colSpan={6} className="px-4 py-8 text-center text-slate-500">
-                    Tidak ada order.
-                  </td>
+                  <th className="px-4 py-3">Order</th>
+                  <th className="px-4 py-3">Client</th>
+                  <th className="px-4 py-3">Total</th>
+                  <th className="px-4 py-3">Status</th>
+                  <th className="px-4 py-3">Tanggal</th>
+                  <th className="px-4 py-3"></th>
                 </tr>
-              ) : (
-                orders.map((o) => (
-                  <tr key={o.id} className="border-b border-slate-100 last:border-0">
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {orders.map((o) => (
+                  <tr key={o.id} className="hover:bg-slate-50">
                     <td className="px-4 py-3">
                       <p className="font-medium">{o.service.title}</p>
                       <p className="text-xs text-slate-500">#{o.id.slice(0, 8)}</p>
@@ -97,12 +97,12 @@ export default async function AdminOrdersPage({
                       </Link>
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </CardContent>
-      </Card>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </Card>
+      )}
     </div>
   );
 }
