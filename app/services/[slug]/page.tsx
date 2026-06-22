@@ -184,13 +184,15 @@ export default async function ServiceDetailPage({ params }: { params: Promise<Pa
                 <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
               </Link>
 
-              <Link
-                href={`/chat/new?serviceId=${service.id}`}
-                className="mt-3 flex w-full items-center justify-center gap-2 rounded-lg border border-[#c3c6d7] py-3 text-sm font-medium text-[#191c1e] transition-colors hover:border-[#004ac6] hover:text-[#004ac6]"
-              >
-                <span className="material-symbols-outlined text-[18px]">chat</span>
-                Diskusi via Chat
-              </Link>
+              <div className="mt-3 relative">
+                <div className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-lg border border-[#c3c6d7] bg-slate-50 py-3 text-sm font-medium text-slate-400 opacity-70">
+                  <span className="material-symbols-outlined text-[18px]">chat</span>
+                  Diskusi via Chat
+                </div>
+                <span className="absolute -right-2 -top-2 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-semibold text-amber-900">
+                  Segera Hadir
+                </span>
+              </div>
 
               <div className="mt-4 text-center">
                 <button className="cursor-pointer border-none bg-transparent text-xs font-medium text-[#434655] transition-colors hover:text-[#004ac6]">
