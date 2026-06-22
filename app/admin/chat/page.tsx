@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
+import { AdminPageHeader } from "@/components/shared/admin-page-header";
+import { AdminEmptyState } from "@/components/shared/admin-empty-state";
 
 export const metadata = { title: "Admin · Chat Inbox" };
 
@@ -15,37 +17,47 @@ export default async function AdminChatInboxPage() {
     },
   });
 
+  const oneDayAgo = new Date(Date.now() - 24 * 60 * 60 * 1000);
+
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold">Chat Inbox</h1>
+      <AdminPageHeader
+        title="Chat Inbox"
+        description={`${rooms.length} percakapan`}
+      />
 
-      <Card>
-        <CardContent className="p-0">
-          {rooms.length === 0 ? (
-            <p className="px-6 py-8 text-center text-sm text-slate-500">Belum ada percakapan.</p>
-          ) : (
-            rooms.map((r) => (
+      {rooms.length === 0 ? (
+        <AdminEmptyState message="Belum ada percakapan." />
+      ) : (
+        <Card>
+          {rooms.map((r) => {
+            const lastMsg = r.messages[0];
+            const isRecent = lastMsg && new Date(lastMsg.createdAt) > oneDayAgo;
+            return (
               <Link
                 key={r.id}
                 href={`/chat/${r.id}`}
-                className="flex items-center justify-between border-b border-slate-200 px-6 py-4 last:border-0 hover:bg-slate-50"
+                className="relative flex items-center justify-between border-b border-slate-200 px-6 py-4 last:border-0 hover:bg-slate-50"
               >
-                <div className="min-w-0">
+                {isRecent && (
+                  <span className="absolute right-6 top-4 h-2 w-2 rounded-full bg-emerald-500" />
+                )}
+                <div className="min-w-0 pr-8">
                   <p className="font-medium">{r.client.fullName}</p>
                   <p className="text-xs text-slate-500">{r.service.title}</p>
                   <p className="mt-1 line-clamp-1 text-sm text-slate-600">
-                    {r.messages[0]?.content ?? "Belum ada pesan"}
+                    {lastMsg?.content ?? "Belum ada pesan"}
                   </p>
                 </div>
-                <div className="text-right text-xs text-slate-400">
+                <div className="shrink-0 text-right text-xs text-slate-400">
                   <p>{r._count.messages} pesan</p>
                   <p>{new Date(r.createdAt).toLocaleDateString("id-ID")}</p>
                 </div>
               </Link>
-            ))
-          )}
-        </CardContent>
-      </Card>
+            );
+          })}
+        </Card>
+      )}
     </div>
   );
 }
