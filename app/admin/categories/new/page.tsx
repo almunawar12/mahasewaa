@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin-guard";
 import { prisma } from "@/lib/prisma";
 import { CategoryForm } from "../_form";
+import { AdminPageHeader } from "@/components/shared/admin-page-header";
 
 export const metadata = { title: "Admin · Tambah Kategori" };
 
@@ -26,14 +26,8 @@ export default async function NewCategoryPage() {
   }
 
   return (
-    <div>
-      <div className="mb-6 flex items-center gap-3">
-        <Link href="/admin/categories" className="text-sm text-slate-500 hover:text-slate-900">
-          ← Kategori
-        </Link>
-        <span className="text-slate-300">/</span>
-        <h1 className="text-2xl font-bold text-slate-900">Tambah Kategori</h1>
-      </div>
+    <div className="space-y-6">
+      <AdminPageHeader title="Tambah Kategori" backHref="/admin/categories" />
       <div className="max-w-xl">
         <CategoryForm action={createCategory} submitLabel="Buat Kategori" />
       </div>

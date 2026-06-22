@@ -67,7 +67,7 @@ export function CategoryForm({
               id="icon"
               name="icon"
               defaultValue={defaults.icon ?? "category"}
-              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-900"
+              className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
             >
               {ICON_OPTIONS.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -84,13 +84,13 @@ export function CategoryForm({
               name="isActive"
               value="true"
               defaultChecked={defaults.isActive !== false}
-              className="h-4 w-4 rounded border-slate-300"
+              className="h-4 w-4 rounded border-slate-300 accent-emerald-600"
             />
             <Label htmlFor="isActive">Aktif (tampil di halaman publik)</Label>
           </div>
 
           <div className="flex gap-3 pt-2">
-            <Button type="submit">{submitLabel}</Button>
+            <Button type="submit" className="bg-emerald-600 hover:bg-emerald-700">{submitLabel}</Button>
           </div>
         </form>
       </CardContent>

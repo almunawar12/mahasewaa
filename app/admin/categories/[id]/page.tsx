@@ -1,8 +1,9 @@
-import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { requireAdmin } from "@/lib/admin-guard";
 import { prisma } from "@/lib/prisma";
 import { CategoryForm } from "../_form";
+import { AdminPageHeader } from "@/components/shared/admin-page-header";
+import { Button } from "@/components/ui/button";
 
 export const metadata = { title: "Admin · Edit Kategori" };
 
@@ -38,14 +39,8 @@ export default async function EditCategoryPage({ params }: { params: Promise<{ i
   }
 
   return (
-    <div>
-      <div className="mb-6 flex items-center gap-3">
-        <Link href="/admin/categories" className="text-sm text-slate-500 hover:text-slate-900">
-          ← Kategori
-        </Link>
-        <span className="text-slate-300">/</span>
-        <h1 className="text-2xl font-bold text-slate-900">Edit: {category.name}</h1>
-      </div>
+    <div className="space-y-6">
+      <AdminPageHeader title={`Edit: ${category.name}`} backHref="/admin/categories" />
 
       <div className="max-w-xl space-y-6">
         <CategoryForm
@@ -59,18 +54,17 @@ export default async function EditCategoryPage({ params }: { params: Promise<{ i
           submitLabel="Simpan Perubahan"
         />
 
-        <form action={deleteCategory}>
-          <button
-            type="submit"
-            className="text-sm font-medium text-red-500 hover:underline"
-            onClick={(e) => {
-              if (!confirm(`Hapus kategori "${category.name}"? Semua jasa di kategori ini akan kehilangan kategorinya.`))
-                e.preventDefault();
-            }}
-          >
-            Hapus kategori ini
-          </button>
-        </form>
+        <div className="space-y-3 rounded-lg border border-red-200 bg-red-50 p-4">
+          <p className="text-sm font-medium text-red-700">Zona Berbahaya</p>
+          <p className="text-xs text-red-600">
+            Semua jasa di kategori ini akan kehilangan kategorinya.
+          </p>
+          <form action={deleteCategory}>
+            <Button type="submit" variant="destructive" size="sm">
+              Hapus Kategori
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   );
