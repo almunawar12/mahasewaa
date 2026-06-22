@@ -47,7 +47,7 @@ export function RevenueChart({ data }: RevenueChartProps) {
           width={44}
         />
         <Tooltip
-          formatter={(value: number) => [formatIDRTooltip(value), "Revenue"]}
+          formatter={(value) => [formatIDRTooltip(Number(value)), "Revenue"]}
           contentStyle={{
             borderRadius: "8px",
             border: "1px solid #e2e8f0",
