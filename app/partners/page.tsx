@@ -6,7 +6,7 @@ import { prisma } from "@/lib/prisma"
 
 export const metadata: Metadata = {
   title: "Our Partners — MahaSewa",
-  description: "Kenali tim partner profesional kami yang siap membantu kebutuhan digital Anda.",
+  description: "Kenali tim partner profesional kami yang siap memberikan hasil terbaik untuk setiap kebutuhan Anda.",
 }
 
 export default async function PartnersPage() {
@@ -32,7 +32,7 @@ export default async function PartnersPage() {
         <div className="mb-10 text-center">
           <h1 className="text-4xl font-bold text-[#191c1e] mb-3">Our Partners</h1>
           <p className="text-[#434655] text-lg max-w-xl mx-auto">
-            Tim profesional kami siap membantu kebutuhan digital Anda dengan keahlian terbaik.
+            Kami bekerja bersama para profesional terbaik untuk memberikan hasil yang berkualitas bagi setiap klien.
           </p>
           <p className="text-sm text-[#434655] mt-2">{data.length} partner aktif</p>
         </div>
