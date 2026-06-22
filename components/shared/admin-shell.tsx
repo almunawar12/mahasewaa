@@ -33,7 +33,7 @@ export function AdminShell({ session, children }: AdminShellProps) {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex h-screen overflow-hidden bg-slate-50">
       <AdminSidebar
         mobileOpen={mobileOpen}
         collapsed={collapsed}
@@ -41,9 +41,9 @@ export function AdminShell({ session, children }: AdminShellProps) {
         onToggleCollapse={() => setCollapsed((c) => !c)}
       />
 
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         {/* Header */}
-        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 lg:px-6">
+        <header className="z-10 flex h-16 shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 lg:px-6">
           {/* Hamburger — mobile only */}
           <button
             onClick={() => setMobileOpen(true)}
@@ -74,7 +74,7 @@ export function AdminShell({ session, children }: AdminShellProps) {
           </div>
         </header>
 
-        <main className="flex-1 overflow-auto p-4 lg:p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-4 lg:p-6">{children}</main>
       </div>
     </div>
   );
